@@ -23,7 +23,7 @@ export function PublicNavbar() {
           <Button
             variant="ghost"
             asChild
-            className="text-base font-medium text-muted-foreground hover:text-primary"
+            className="hidden text-base font-medium text-muted-foreground hover:text-primary md:inline-flex"
           >
             <a href={loginUrl} data-action="nav-login" data-entity="session">
               Iniciar sesión
@@ -31,7 +31,7 @@ export function PublicNavbar() {
           </Button>
           <Button
             asChild
-            className="hidden rounded-full bg-primary px-6 text-white shadow-sm hover:bg-primary/90 md:inline-flex"
+            className="inline-flex rounded-full bg-primary px-6 text-white shadow-sm hover:bg-primary/90"
           >
             <Link href="#contacto" data-action="nav-contact" data-entity="lead">
               Contacto
