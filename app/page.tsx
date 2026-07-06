@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ShieldCheck, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ContactForm } from "@/components/ui-public/ContactForm";
+import { DevBlogInvitePopup } from "@/components/ui-public/DevBlogInvitePopup";
 import { getAppLoginUrl } from "@/lib/constants";
 
 /**
@@ -322,6 +323,8 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      <DevBlogInvitePopup />
     </div>
   );
 }

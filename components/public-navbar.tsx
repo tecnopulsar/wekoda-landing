@@ -19,7 +19,16 @@ export function PublicNavbar() {
             <span className="ml-1 text-primary">Koda</span>
           </div>
         </Link>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-4">
+          <Button
+            variant="ghost"
+            asChild
+            className="hidden text-base font-medium text-muted-foreground hover:text-primary md:inline-flex"
+          >
+            <Link href="/devblog" data-action="nav-devblog" data-entity="devblog">
+              DevBlog
+            </Link>
+          </Button>
           <Button
             variant="ghost"
             asChild

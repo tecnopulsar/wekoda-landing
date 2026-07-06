@@ -32,6 +32,69 @@
   animation: locate-glow 1.2s ease-in-out infinite;
 }
 
+/* DevBlog article typography — minimal prose sin depender de @tailwindcss/typography. */
+.devblog-prose {
+  @apply text-base leading-relaxed text-foreground;
+}
+.devblog-prose > * + * {
+  @apply mt-5;
+}
+.devblog-prose h1 {
+  @apply mt-10 text-3xl font-extrabold tracking-tight text-foreground;
+}
+.devblog-prose h2 {
+  @apply mt-10 text-2xl font-bold tracking-tight text-foreground;
+}
+.devblog-prose h3 {
+  @apply mt-8 text-xl font-semibold tracking-tight text-foreground;
+}
+.devblog-prose p {
+  @apply text-base leading-relaxed text-foreground/90;
+}
+.devblog-prose a {
+  @apply font-medium text-primary underline-offset-4 hover:underline;
+}
+.devblog-prose strong {
+  @apply font-semibold text-foreground;
+}
+.devblog-prose em {
+  @apply italic;
+}
+.devblog-prose ul {
+  @apply list-disc space-y-1.5 pl-6 text-foreground/90;
+}
+.devblog-prose ol {
+  @apply list-decimal space-y-1.5 pl-6 text-foreground/90;
+}
+.devblog-prose li > p {
+  @apply my-0;
+}
+.devblog-prose blockquote {
+  @apply border-l-4 border-primary/30 bg-primary/5 px-4 py-2 text-foreground/80;
+}
+.devblog-prose code {
+  @apply rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em] text-primary;
+}
+.devblog-prose pre {
+  @apply overflow-x-auto rounded-xl border border-slate-800 bg-slate-950 p-4 text-sm leading-relaxed text-slate-100;
+}
+.devblog-prose pre code {
+  @apply bg-transparent p-0 text-slate-100;
+}
+.devblog-prose table {
+  @apply w-full border-collapse text-left text-sm;
+}
+.devblog-prose th,
+.devblog-prose td {
+  @apply border border-border/60 px-3 py-2;
+}
+.devblog-prose th {
+  @apply bg-muted/60 font-semibold;
+}
+.devblog-prose hr {
+  @apply my-8 border-border/60;
+}
+
 :root {
   color-scheme: light;
 }
