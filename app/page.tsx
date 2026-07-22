@@ -4,6 +4,7 @@ import { ShieldCheck, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ContactForm } from "@/components/ui-public/ContactForm";
 import { DevBlogInvitePopup } from "@/components/ui-public/DevBlogInvitePopup";
+import { ScrollToContactOnHash } from "@/components/ui-public/ScrollToContactOnHash";
 import { getAppLoginUrl } from "@/lib/constants";
 
 /**
@@ -73,6 +74,7 @@ export default function LandingPage() {
 
   return (
     <div className="h-full min-h-0 flex-1 snap-y snap-proximity overflow-y-scroll scroll-smooth scroll-pt-16">
+      <ScrollToContactOnHash />
       <section
         className={`${sectionSnapHero} overflow-hidden bg-slate-50 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[length:24px_24px]`}
       >

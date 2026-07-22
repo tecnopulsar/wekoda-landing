@@ -42,7 +42,7 @@ export function PublicNavbar() {
             asChild
             className="inline-flex rounded-full bg-primary px-6 text-white shadow-sm hover:bg-primary/90"
           >
-            <Link href="#contacto" data-action="nav-contact" data-entity="lead">
+            <Link href="/#contacto" data-action="nav-contact" data-entity="lead">
               Contacto
             </Link>
           </Button>
