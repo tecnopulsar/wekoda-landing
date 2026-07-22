@@ -62,4 +62,4 @@ reported_boot = {
 ## Para profundizar
 
 - Modelo shadow y payloads: [`docs/MQTT-CONTRACT-v2.md`](../../docs/MQTT-CONTRACT-v2.md) (§5)
-- Capabilities: [`docs/device-capability-spec.md`](../../docs/device-capability-spec.md)
+- Capabilities: [`docs/specs/device-capability-spec.md`](../../docs/specs/device-capability-spec.md)

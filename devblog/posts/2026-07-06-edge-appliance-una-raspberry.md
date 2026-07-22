@@ -67,5 +67,5 @@ update:
 
 ## Para profundizar
 
-- Runbook completo del appliance: [`docs/EDGE-APPLIANCE.md`](../../docs/EDGE-APPLIANCE.md)
+- Runbook completo del appliance: [`docs/operations/EDGE-APPLIANCE.md`](../../docs/operations/EDGE-APPLIANCE.md)
 - Docker en desarrollo: [`README-DOCKER.md`](../../README-DOCKER.md)
