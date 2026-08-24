@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MapPin, Phone, Mail, Linkedin, Instagram } from "lucide-react";
-import { getAppLoginUrl } from "@/lib/constants";
+import { getAppLoginUrl, SHOW_APP_LOGIN } from "@/lib/constants";
 
 /** Actualizar con las URLs oficiales de la marca cuando estén disponibles. */
 const SOCIAL_LINKS = {
@@ -19,7 +19,6 @@ const CONTACT = {
 
 export function PublicFooter() {
   const mapsHref = `https://www.google.com/maps/search/?api=1&query=${CONTACT.mapsQuery}`;
-  const loginUrl = getAppLoginUrl();
 
   return (
     <footer className="border-t border-white/10 bg-black text-zinc-300">
@@ -151,16 +150,18 @@ export function PublicFooter() {
                   Privacidad
                 </Link>
               </li>
-              <li>
-                <a
-                  href={loginUrl}
-                  className="font-medium text-primary transition-colors hover:text-primary/90 hover:underline"
-                  data-action="nav-login-footer"
-                  data-entity="session"
-                >
-                  Iniciar sesión
-                </a>
-              </li>
+              {SHOW_APP_LOGIN ? (
+                <li>
+                  <a
+                    href={getAppLoginUrl()}
+                    className="font-medium text-primary transition-colors hover:text-primary/90 hover:underline"
+                    data-action="nav-login-footer"
+                    data-entity="session"
+                  >
+                    Iniciar sesión
+                  </a>
+                </li>
+              ) : null}
             </ul>
           </div>
         </div>

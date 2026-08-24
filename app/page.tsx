@@ -11,7 +11,7 @@ import { PlatformShowcase } from "@/components/ui-public/PlatformShowcase";
 import { IrJourney } from "@/components/ui-public/IrJourney";
 import { DeploymentPlans } from "@/components/ui-public/DeploymentPlans";
 import { verticalApps, faqItems } from "@/lib/platform-content";
-import { getAppLoginUrl } from "@/lib/constants";
+import { getAppLoginUrl, SHOW_APP_LOGIN } from "@/lib/constants";
 import { SITE_NAME, absoluteUrl, getSiteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -90,8 +90,6 @@ const heroHighlights = [
 ];
 
 export default function LandingPage() {
-  const loginUrl = getAppLoginUrl();
-
   return (
     <div className="h-full min-h-0 flex-1 snap-y snap-proximity overflow-y-scroll scroll-smooth scroll-pt-16">
       <ScrollToContactOnHash />
@@ -138,19 +136,35 @@ export default function LandingPage() {
               </ul>
 
               <div className="mt-6 flex flex-wrap gap-3 md:mt-7">
-                <Button
-                  asChild
-                  size="lg"
-                  className="group bg-primary text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 hover:shadow-primary/40"
-                >
-                  <Link href={loginUrl} data-action="start-login" data-entity="session">
-                    Empezar ahora
-                    <ArrowRight
-                      className="size-4 transition-transform group-hover:translate-x-0.5"
-                      aria-hidden
-                    />
-                  </Link>
-                </Button>
+                {SHOW_APP_LOGIN ? (
+                  <Button
+                    asChild
+                    size="lg"
+                    className="group bg-primary text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 hover:shadow-primary/40"
+                  >
+                    <Link href={getAppLoginUrl()} data-action="start-login" data-entity="session">
+                      Empezar ahora
+                      <ArrowRight
+                        className="size-4 transition-transform group-hover:translate-x-0.5"
+                        aria-hidden
+                      />
+                    </Link>
+                  </Button>
+                ) : (
+                  <Button
+                    asChild
+                    size="lg"
+                    className="group bg-primary text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 hover:shadow-primary/40"
+                  >
+                    <Link href="#contacto" data-action="go-contact" data-entity="lead">
+                      Solicitar información
+                      <ArrowRight
+                        className="size-4 transition-transform group-hover:translate-x-0.5"
+                        aria-hidden
+                      />
+                    </Link>
+                  </Button>
+                )}
                 <Button
                   asChild
                   variant="outline"

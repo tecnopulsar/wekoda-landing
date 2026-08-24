@@ -1,11 +1,9 @@
 import Link from "next/link";
 import { Hexagon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { getAppLoginUrl } from "@/lib/constants";
+import { getAppLoginUrl, SHOW_APP_LOGIN } from "@/lib/constants";
 
 export function PublicNavbar() {
-  const loginUrl = getAppLoginUrl();
-
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md transition-all">
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-8">
@@ -29,15 +27,17 @@ export function PublicNavbar() {
               DevBlog
             </Link>
           </Button>
-          <Button
-            variant="ghost"
-            asChild
-            className="hidden text-base font-medium text-muted-foreground hover:text-primary md:inline-flex"
-          >
-            <a href={loginUrl} data-action="nav-login" data-entity="session">
-              Iniciar sesión
-            </a>
-          </Button>
+          {SHOW_APP_LOGIN ? (
+            <Button
+              variant="ghost"
+              asChild
+              className="hidden text-base font-medium text-muted-foreground hover:text-primary md:inline-flex"
+            >
+              <a href={getAppLoginUrl()} data-action="nav-login" data-entity="session">
+                Iniciar sesión
+              </a>
+            </Button>
+          ) : null}
           <Button
             asChild
             className="inline-flex rounded-full bg-primary px-6 text-white shadow-sm hover:bg-primary/90"
