@@ -25,6 +25,7 @@ export async function POST(request: NextRequest) {
   const nombre = typeof body.nombre === "string" ? body.nombre.trim().slice(0, 120) : "";
   const email = typeof body.email === "string" ? body.email.trim().slice(0, 254) : "";
   const empresa = typeof body.empresa === "string" ? body.empresa.trim().slice(0, 200) : "";
+  const interes = typeof body.interes === "string" ? body.interes.trim().slice(0, 120) : "";
   const mensaje = typeof body.mensaje === "string" ? body.mensaje.trim().slice(0, 5000) : "";
 
   if (!nombre || !email || !mensaje) {
@@ -41,6 +42,7 @@ export async function POST(request: NextRequest) {
   const safeNombre = escapeHtml(nombre);
   const safeEmail = escapeHtml(email);
   const safeEmpresa = empresa ? escapeHtml(empresa) : "No especificada";
+  const safeInteres = interes ? escapeHtml(interes) : "No especificado";
   const safeMensaje = escapeHtml(mensaje).replace(/\n/g, "<br/>");
 
   const apiKey = process.env.RESEND_API_KEY?.trim();
@@ -61,7 +63,9 @@ export async function POST(request: NextRequest) {
     from: EMAIL_FROM,
     to: EMAIL_TO,
     replyTo: email,
-    subject: `Nuevo contacto We Koda B2B: ${nombre}`,
+    subject: interes
+      ? `Nuevo contacto We Koda B2B — ${interes}: ${nombre}`
+      : `Nuevo contacto We Koda B2B: ${nombre}`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #1e293b;">
         <h2 style="color: #0ea5e9; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">
@@ -71,6 +75,7 @@ export async function POST(request: NextRequest) {
           <p><strong>Nombre:</strong> ${safeNombre}</p>
           <p><strong>Email:</strong> ${safeEmail}</p>
           <p><strong>Empresa:</strong> ${safeEmpresa}</p>
+          <p><strong>Interés:</strong> ${safeInteres}</p>
           <h3 style="margin-top: 20px;">Mensaje:</h3>
           <div style="background-color: white; padding: 15px; border-radius: 6px; border-left: 4px solid #0ea5e9;">
             ${safeMensaje}

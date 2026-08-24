@@ -3,9 +3,13 @@ import Link from "next/link";
 import { ShieldCheck, CheckCircle2, ArrowRight, Cpu, Network, Radio } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ContactForm } from "@/components/ui-public/ContactForm";
-import { HeroNetworkVisual } from "@/components/ui-public/HeroNetworkVisual";
 import { DevBlogInvitePopup } from "@/components/ui-public/DevBlogInvitePopup";
 import { ScrollToContactOnHash } from "@/components/ui-public/ScrollToContactOnHash";
+import { HeroNetworkVisual } from "@/components/ui-public/HeroNetworkVisual";
+import { PlatformShowcase } from "@/components/ui-public/PlatformShowcase";
+import { IrJourney } from "@/components/ui-public/IrJourney";
+import { DeploymentPlans } from "@/components/ui-public/DeploymentPlans";
+import { verticalApps } from "@/lib/platform-content";
 import { getAppLoginUrl } from "@/lib/constants";
 
 /**
@@ -22,13 +26,6 @@ const sectionSnap =
 const sectionSnapCompact =
   "relative flex w-full snap-start flex-col justify-center px-4 py-3.5 sm:px-6 md:py-4";
 
-const capabilityCards = [
-  "Alta y provisión de dispositivos sin intervención manual.",
-  "Ejecución remota de comandos con confirmación transaccional.",
-  "Telemetría continua y observabilidad de estado.",
-  "Orquestación centralizada de flotas distribuidas."
-];
-
 const securityItems = [
   "Cada dispositivo opera con sus propias credenciales (deviceId + deviceSecret).",
   "El frontend nunca accede a credenciales ni al broker.",
@@ -36,43 +33,11 @@ const securityItems = [
   "Aislamiento estricto por organización."
 ];
 
-const flowSteps = [
-  "Registrás y adoptás dispositivos.",
-  "Ejecutás comandos y automatizaciones.",
-  "Monitoreás estado y métricas en tiempo real."
-];
-
-const useCaseCards: { title: string; image: string }[] = [
-  {
-    title: "Cartelería digital distribuida a gran escala",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&auto=format&fit=crop"
-  },
-  {
-    title: "IoT industrial y monitoreo remoto",
-    image:
-      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80&auto=format&fit=crop"
-  },
-  {
-    title: "Automatización de espacios y control centralizado",
-    image:
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80&auto=format&fit=crop"
-  },
-  {
-    title: "Infraestructura edge en múltiples ubicaciones",
-    image:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80&auto=format&fit=crop"
-  }
-];
-
 const heroHighlights = [
   { label: "Protocolo MQTT sobre TLS", Icon: Network },
   { label: "Firmware ESP32 y edge Linux", Icon: Cpu },
   { label: "Telemetría en tiempo real", Icon: Radio }
 ];
-
-const ARCH_VISUAL =
-  "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=80&auto=format&fit=crop";
 
 export default function LandingPage() {
   const loginUrl = getAppLoginUrl();
@@ -128,11 +93,7 @@ export default function LandingPage() {
                   size="lg"
                   className="group bg-primary text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 hover:shadow-primary/40"
                 >
-                  <Link
-                    href={loginUrl}
-                    data-action="start-login"
-                    data-entity="session"
-                  >
+                  <Link href={loginUrl} data-action="start-login" data-entity="session">
                     Empezar ahora
                     <ArrowRight
                       className="size-4 transition-transform group-hover:translate-x-0.5"
@@ -146,12 +107,8 @@ export default function LandingPage() {
                   size="lg"
                   className="border-primary/20 text-primary hover:bg-primary/10"
                 >
-                  <Link
-                    href="#arquitectura"
-                    data-action="view-architecture"
-                    data-entity="platform"
-                  >
-                    Ver arquitectura
+                  <Link href="#plataforma" data-action="view-platform" data-entity="platform">
+                    Ver la plataforma
                   </Link>
                 </Button>
               </div>
@@ -166,17 +123,17 @@ export default function LandingPage() {
 
           <div className="mt-6 w-full rounded-2xl border border-border/70 bg-background/80 p-4 shadow-2xl shadow-primary/5 backdrop-blur-sm md:mt-10 md:p-5">
             <div className="grid gap-3 md:grid-cols-3 md:gap-4">
-              <div className="group rounded-xl border bg-card p-3 text-left transition-colors hover:border-primary/40 md:p-4">
+              <div className="rounded-xl border bg-card p-3 text-left transition-colors hover:border-primary/40 md:p-4">
                 <p className="text-xs uppercase tracking-wide text-muted-foreground">Fleet</p>
                 <p className="mt-2 text-2xl font-semibold text-foreground">2.148</p>
                 <p className="text-sm text-muted-foreground">dispositivos activos</p>
               </div>
-              <div className="group rounded-xl border bg-card p-3 text-left transition-colors hover:border-primary/40 md:p-4">
+              <div className="rounded-xl border bg-card p-3 text-left transition-colors hover:border-primary/40 md:p-4">
                 <p className="text-xs uppercase tracking-wide text-muted-foreground">Comandos</p>
                 <p className="mt-2 text-2xl font-semibold text-foreground">99.98%</p>
                 <p className="text-sm text-muted-foreground">confirmación transaccional</p>
               </div>
-              <div className="group rounded-xl border bg-card p-3 text-left transition-colors hover:border-primary/40 md:p-4">
+              <div className="rounded-xl border bg-card p-3 text-left transition-colors hover:border-primary/40 md:p-4">
                 <p className="text-xs uppercase tracking-wide text-muted-foreground">Tenants</p>
                 <p className="mt-2 text-2xl font-semibold text-foreground">Aislados</p>
                 <p className="text-sm text-muted-foreground">modelo Zero Trust nativo</p>
@@ -194,17 +151,88 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className={`${sectionSnap} bg-white`}>
+      <section id="plataforma" className={`${sectionSnap} bg-white`}>
         <div className="mx-auto w-full max-w-7xl">
-          <h2 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl lg:text-4xl">
-            Operá, monitoreá y protegé tu tecnología sin complejidad.
-          </h2>
-          <div className="mt-8 grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2 md:mt-10 lg:grid-cols-4">
-            {capabilityCards.map((item) => (
-              <div key={item} className="rounded-2xl border border-border/80 bg-card p-4 shadow-sm md:p-5">
-                <p className="text-sm leading-relaxed text-muted-foreground">{item}</p>
-              </div>
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-widest text-secondary">
+              Así se ve por dentro
+            </p>
+            <h2 className="mt-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl lg:text-4xl">
+              No es una maqueta: es el panel que usamos todos los días.
+            </h2>
+            <p className="mt-3 text-base text-muted-foreground md:text-lg">
+              Recorré las pantallas reales de la plataforma y mirá cómo se administra una flota de
+              principio a fin.
+            </p>
+          </div>
+
+          <div className="mt-8 md:mt-10">
+            <PlatformShowcase />
+          </div>
+        </div>
+      </section>
+
+      <section className={`${sectionSnap} border-y border-border/60 bg-slate-50/80`}>
+        <div className="mx-auto w-full max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-widest text-secondary">
+              Verticales integradas
+            </p>
+            <h2 className="mt-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl lg:text-4xl">
+              Soluciones listas, no un lienzo en blanco.
+            </h2>
+            <p className="mt-3 text-base text-muted-foreground md:text-lg">
+              Cada vertical trae su hardware de referencia, su firmware y su consola dentro de la
+              misma plataforma. Sumar una nueva no rompe las que ya funcionan.
+            </p>
+          </div>
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 md:mt-10 lg:grid-cols-3">
+            {verticalApps.map(({ id, name, hardware, description, available, Icon }) => (
+              <article
+                key={id}
+                className="flex flex-col rounded-2xl border border-border/70 bg-card p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <span className="inline-flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    <Icon className="size-5" aria-hidden />
+                  </span>
+                  <span
+                    className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${
+                      available
+                        ? "bg-emerald-50 text-emerald-700"
+                        : "bg-muted text-muted-foreground"
+                    }`}
+                  >
+                    {available ? "Disponible" : "En desarrollo"}
+                  </span>
+                </div>
+                <h3 className="mt-4 text-base font-semibold text-foreground">{name}</h3>
+                <p className="mt-1 font-mono text-[11px] text-muted-foreground/80">{hardware}</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{description}</p>
+              </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className={sectionSnap}>
+        <div className="mx-auto w-full max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-widest text-secondary">
+              Caso completo
+            </p>
+            <h2 className="mt-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl lg:text-4xl">
+              Del control remoto a la automatización, en cuatro pasos.
+            </h2>
+            <p className="mt-3 text-base text-muted-foreground md:text-lg">
+              Así se integra un televisor, un aire acondicionado o un decodificador que solo entiende
+              infrarrojo, y termina respondiendo a una agenda.
+            </p>
+          </div>
+
+          <div className="mt-8 md:mt-10">
+            <IrJourney />
           </div>
         </div>
       </section>
@@ -231,114 +259,83 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section
-        id="arquitectura"
-        className={`${sectionSnap} border-y border-blue-100 bg-blue-50/50`}
-      >
+      <section id="arquitectura" className={`${sectionSnap} border-y border-blue-100 bg-blue-50/50`}>
         <div className="mx-auto w-full max-w-7xl">
-          <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-8">
+          <div className="grid items-center gap-8 lg:grid-cols-[1.4fr_1fr] lg:gap-10">
             <div className="space-y-4">
               <p className="font-mono text-sm text-foreground">
                 [ Dispositivo Edge ] -&gt; [ Backend / Gateway ] -&gt; [ UI Plataforma ]
               </p>
-              <div className="grid gap-4 md:grid-cols-1">
-                <p className="text-lg font-medium text-foreground">
-                  Backend como gateway seguro entre dispositivos y usuarios. Punto único de control
-                  para toda la infraestructura.
-                </p>
-                <p className="text-lg font-medium text-foreground">
-                  Sin conexiones directas entre cliente y broker. Sin exposición de credenciales.
-                </p>
-              </div>
+              <p className="text-lg font-medium text-foreground">
+                El backend es el gateway seguro entre dispositivos y usuarios: un punto único de
+                control para toda la infraestructura.
+              </p>
+              <p className="text-lg font-medium text-foreground">
+                Sin conexiones directas entre cliente y broker. Sin exposición de credenciales.
+              </p>
+              <p className="text-base text-muted-foreground">
+                Sobre esa base se apoya todo el panel: operación de flota, control por espacios,
+                automatización, aplicaciones verticales y gobierno de la organización.
+              </p>
+              <Button
+                asChild
+                variant="outline"
+                className="mt-2 border-primary/30 text-primary hover:bg-primary/10"
+              >
+                <Link href="/devblog" data-action="nav-devblog-from-landing" data-entity="devblog">
+                  Leer cómo está construida
+                  <ArrowRight className="size-4" aria-hidden />
+                </Link>
+              </Button>
             </div>
-            <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-blue-100/80 bg-white shadow-lg">
+            <div className="relative mx-auto aspect-[3/4] w-full max-w-xs overflow-hidden rounded-2xl border border-blue-100/80 bg-white shadow-lg">
               <Image
-                src={ARCH_VISUAL}
-                alt="Equipo colaborando en infraestructura cloud"
+                src="/images/platform/sidebar/sidebar-1.png"
+                alt="Navegación de la plataforma con operación, control, automatización y aplicaciones"
                 fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-contain"
+                sizes="(min-width: 1024px) 25vw, 60vw"
               />
             </div>
           </div>
         </div>
       </section>
 
-      <section className={`${sectionSnap} bg-slate-50/80`}>
+      <section id="modalidades" className={sectionSnap}>
         <div className="mx-auto w-full max-w-7xl">
-          <h2 className="text-2xl font-bold tracking-tight md:text-3xl lg:text-4xl">Cómo funciona</h2>
-          <div className="mt-8 grid gap-4 md:mt-10 md:grid-cols-3 md:gap-6">
-            {flowSteps.map((step, idx) => (
-              <div key={step} className="relative overflow-hidden rounded-2xl border bg-card p-4 shadow-sm md:p-5">
-                <span className="absolute right-2 top-1 -z-10 text-6xl font-black text-muted/20 md:text-7xl">
-                  {idx + 1}
-                </span>
-                <p className="text-sm leading-relaxed text-muted-foreground">{step}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className={sectionSnap}>
-        <div className="mx-auto w-full max-w-7xl">
-          <h2 className="text-2xl font-bold tracking-tight md:text-3xl lg:text-4xl">Casos de uso</h2>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
-            {useCaseCards.map((uc) => (
-              <div
-                key={uc.title}
-                className="group relative aspect-[4/3] overflow-hidden rounded-xl sm:aspect-[3/4]"
-              >
-                <Image
-                  src={uc.image}
-                  alt={uc.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                <p className="absolute bottom-0 p-4 text-base font-bold leading-snug text-white md:p-5 md:text-lg">
-                  {uc.title}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className={sectionSnap}>
-        <div className="mx-auto w-full max-w-7xl">
-          <div className="rounded-3xl bg-slate-900 p-6 text-center text-white md:p-8">
-            <h2 className="text-balance text-2xl font-bold md:text-3xl lg:text-4xl">
-              Empezá a operar tu infraestructura hoy.
-            </h2>
-            <p className="mt-3 text-sm text-slate-300 md:text-base">
-              Centralizá el control de tus dispositivos en una sola plataforma.
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-widest text-secondary">
+              Cómo empezar
             </p>
-            <Button
-              asChild
-              className="mt-6 h-12 rounded-full bg-primary px-8 text-base text-white hover:bg-primary/90 md:mt-8 md:h-14 md:px-10 md:text-lg"
-            >
-              <Link href="#contacto" data-action="go-contact" data-entity="lead">
-                Contacto
-              </Link>
-            </Button>
+            <h2 className="mt-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl lg:text-4xl">
+              Tres formas de tener WeKoda funcionando.
+            </h2>
+            <p className="mt-3 text-base text-muted-foreground md:text-lg">
+              Desde un kit para probar en una sala hasta la licencia para desplegar la plataforma en
+              tu propia infraestructura.
+            </p>
           </div>
+
+          <div className="mt-10 md:mt-12">
+            <DeploymentPlans />
+          </div>
+
+          <p className="mt-8 text-center text-sm text-muted-foreground">
+            Preparamos una propuesta a medida según el tamaño de la flota y el alcance de la
+            integración.
+          </p>
         </div>
       </section>
 
-      <section
-        id="contacto"
-        className={`${sectionSnap} border-t border-border/60 bg-muted/30`}
-      >
+      <section id="contacto" className={`${sectionSnap} border-t border-border/60 bg-muted/30`}>
         <div className="mx-auto grid w-full max-w-7xl items-start gap-8 lg:grid-cols-2 lg:gap-10">
           <div className="text-left">
             <h2 className="text-3xl font-extrabold tracking-tight text-foreground md:text-4xl">
               Hablemos de tu infraestructura.
             </h2>
             <p className="mt-3 text-base text-muted-foreground md:text-lg">
-              Contanos tus desafíos de orquestación edge. Nuestro equipo de ingeniería te asesorará
-              sobre cómo We Koda puede centralizar y asegurar tus operaciones.
+              Contanos qué querés automatizar. Nuestro equipo de ingeniería te asesorará sobre cómo
+              We Koda puede centralizar y asegurar tus operaciones.
             </p>
             <div className="mt-5 space-y-2.5 md:mt-6">
               <div className="flex items-center gap-3 text-muted-foreground">
@@ -348,6 +345,10 @@ export default function LandingPage() {
               <div className="flex items-center gap-3 text-muted-foreground">
                 <CheckCircle2 className="h-5 w-5 shrink-0 text-primary" aria-hidden />
                 <span>Demos personalizadas de la arquitectura</span>
+              </div>
+              <div className="flex items-center gap-3 text-muted-foreground">
+                <CheckCircle2 className="h-5 w-5 shrink-0 text-primary" aria-hidden />
+                <span>Presupuesto de kit, gateway o licencia según tu caso</span>
               </div>
             </div>
           </div>

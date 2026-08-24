@@ -1,15 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { contactInterests } from "@/lib/platform-content";
+import { SELECT_INTEREST_EVENT } from "@/lib/constants";
+
+const DEFAULT_INTEREST = contactInterests[contactInterests.length - 1];
 
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [interest, setInterest] = useState<string>(DEFAULT_INTEREST);
+
+  useEffect(() => {
+    const onSelectInterest = (event: Event) => {
+      const detail = (event as CustomEvent<string>).detail;
+      if (contactInterests.includes(detail as (typeof contactInterests)[number])) {
+        setInterest(detail);
+        setStatus("idle");
+      }
+    };
+
+    window.addEventListener(SELECT_INTEREST_EVENT, onSelectInterest);
+    return () => window.removeEventListener(SELECT_INTEREST_EVENT, onSelectInterest);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,6 +40,7 @@ export function ContactForm() {
       nombre: fd.get("nombre"),
       email: fd.get("email"),
       empresa: fd.get("empresa"),
+      interes: fd.get("interes"),
       mensaje: fd.get("mensaje")
     };
 
@@ -40,6 +59,7 @@ export function ContactForm() {
 
       setStatus("success");
       (e.target as HTMLFormElement).reset();
+      setInterest(DEFAULT_INTEREST);
     } catch (err: unknown) {
       setStatus("error");
       setErrorMessage(err instanceof Error ? err.message : "Error desconocido.");
@@ -111,6 +131,25 @@ export function ContactForm() {
           disabled={isSubmitting}
           maxLength={200}
         />
+      </div>
+      <div className="space-y-2">
+        <label htmlFor="contact-interes" className="text-sm font-medium text-foreground">
+          ¿Sobre qué querés consultar? *
+        </label>
+        <select
+          id="contact-interes"
+          name="interes"
+          value={interest}
+          onChange={(event) => setInterest(event.target.value)}
+          disabled={isSubmitting}
+          className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+        >
+          {contactInterests.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
       </div>
       <div className="space-y-2">
         <label htmlFor="contact-mensaje" className="text-sm font-medium text-foreground">
