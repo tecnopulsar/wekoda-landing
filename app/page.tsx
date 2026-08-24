@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ShieldCheck, CheckCircle2 } from "lucide-react";
+import { ShieldCheck, CheckCircle2, ArrowRight, Cpu, Network, Radio } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ContactForm } from "@/components/ui-public/ContactForm";
+import { HeroNetworkVisual } from "@/components/ui-public/HeroNetworkVisual";
 import { DevBlogInvitePopup } from "@/components/ui-public/DevBlogInvitePopup";
 import { ScrollToContactOnHash } from "@/components/ui-public/ScrollToContactOnHash";
 import { getAppLoginUrl } from "@/lib/constants";
@@ -64,8 +65,12 @@ const useCaseCards: { title: string; image: string }[] = [
   }
 ];
 
-const HERO_VISUAL =
-  "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80&auto=format&fit=crop";
+const heroHighlights = [
+  { label: "Protocolo MQTT sobre TLS", Icon: Network },
+  { label: "Firmware ESP32 y edge Linux", Icon: Cpu },
+  { label: "Telemetría en tiempo real", Icon: Radio }
+];
+
 const ARCH_VISUAL =
   "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=80&auto=format&fit=crop";
 
@@ -78,30 +83,61 @@ export default function LandingPage() {
       <section
         className={`${sectionSnapHero} overflow-hidden bg-slate-50 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[length:24px_24px]`}
       >
-        <div className="mx-auto w-full max-w-7xl">
-          <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-8">
+        <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,hsl(var(--primary)/0.12),transparent_55%),radial-gradient(ellipse_at_bottom_left,hsl(var(--secondary)/0.08),transparent_50%)]"
+          aria-hidden
+        />
+        <div className="relative mx-auto w-full max-w-7xl">
+          <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_1fr] lg:gap-10">
             <div className="text-left">
-              <p className="text-sm font-semibold uppercase tracking-widest text-secondary">
-                El poder de conectar. La seguridad de controlar.
+              <p className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+                <span className="relative flex size-1.5">
+                  <span className="hero-ping absolute inline-flex size-full rounded-full bg-primary/70" />
+                  <span className="relative inline-flex size-1.5 rounded-full bg-primary" />
+                </span>
+                Plataforma IoT over IP
               </p>
               <h1 className="mt-4 text-balance text-4xl font-extrabold tracking-tight text-foreground md:text-5xl lg:text-6xl">
-                Operá dispositivos como infraestructura, no como hardware.
+                Operá dispositivos como{" "}
+                <span className="bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+                  infraestructura
+                </span>
+                , no como hardware.
               </h1>
               <p className="mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
-                Gestioná, asegurá y escalá dispositivos conectados con control total y un modelo de
-                seguridad Zero Trust.
+                Cada sensor, actuador o gateway se convierte en un nodo direccionable sobre IP.
+                Gestioná, asegurá y escalá tu flota con control total y un modelo de seguridad Zero
+                Trust.
               </p>
-              <p className="mt-4 text-xs uppercase tracking-[0.2em] text-muted-foreground/70">
-                Para equipos técnicos, integradores y empresas que operan infraestructura en el edge.
-              </p>
+
+              <ul className="mt-5 flex flex-wrap gap-2 md:mt-6">
+                {heroHighlights.map(({ label, Icon }) => (
+                  <li
+                    key={label}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-background/70 px-3 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur-sm"
+                  >
+                    <Icon className="size-3.5 text-primary" aria-hidden />
+                    {label}
+                  </li>
+                ))}
+              </ul>
+
               <div className="mt-6 flex flex-wrap gap-3 md:mt-7">
-                <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90">
+                <Button
+                  asChild
+                  size="lg"
+                  className="group bg-primary text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 hover:shadow-primary/40"
+                >
                   <Link
                     href={loginUrl}
                     data-action="start-login"
                     data-entity="session"
                   >
                     Empezar ahora
+                    <ArrowRight
+                      className="size-4 transition-transform group-hover:translate-x-0.5"
+                      aria-hidden
+                    />
                   </Link>
                 </Button>
                 <Button
@@ -119,35 +155,30 @@ export default function LandingPage() {
                   </Link>
                 </Button>
               </div>
+
+              <p className="mt-5 text-xs uppercase tracking-[0.2em] text-muted-foreground/70">
+                Para equipos técnicos, integradores y empresas que operan infraestructura en el edge.
+              </p>
             </div>
-            <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-border/50 shadow-2xl">
-              <Image
-                src={HERO_VISUAL}
-                alt="Infraestructura y operaciones de red"
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                priority
-              />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-transparent" />
-            </div>
+
+            <HeroNetworkVisual />
           </div>
 
           <div className="mt-6 w-full rounded-2xl border border-border/70 bg-background/80 p-4 shadow-2xl shadow-primary/5 backdrop-blur-sm md:mt-10 md:p-5">
             <div className="grid gap-3 md:grid-cols-3 md:gap-4">
-              <div className="rounded-xl border bg-card p-3 text-left md:p-4">
+              <div className="group rounded-xl border bg-card p-3 text-left transition-colors hover:border-primary/40 md:p-4">
                 <p className="text-xs uppercase tracking-wide text-muted-foreground">Fleet</p>
-                <p className="mt-2 text-2xl font-semibold">2.148</p>
+                <p className="mt-2 text-2xl font-semibold text-foreground">2.148</p>
                 <p className="text-sm text-muted-foreground">dispositivos activos</p>
               </div>
-              <div className="rounded-xl border bg-card p-3 text-left md:p-4">
+              <div className="group rounded-xl border bg-card p-3 text-left transition-colors hover:border-primary/40 md:p-4">
                 <p className="text-xs uppercase tracking-wide text-muted-foreground">Comandos</p>
-                <p className="mt-2 text-2xl font-semibold">99.98%</p>
+                <p className="mt-2 text-2xl font-semibold text-foreground">99.98%</p>
                 <p className="text-sm text-muted-foreground">confirmación transaccional</p>
               </div>
-              <div className="rounded-xl border bg-card p-3 text-left md:p-4">
+              <div className="group rounded-xl border bg-card p-3 text-left transition-colors hover:border-primary/40 md:p-4">
                 <p className="text-xs uppercase tracking-wide text-muted-foreground">Tenants</p>
-                <p className="mt-2 text-2xl font-semibold">Aislados</p>
+                <p className="mt-2 text-2xl font-semibold text-foreground">Aislados</p>
                 <p className="text-sm text-muted-foreground">modelo Zero Trust nativo</p>
               </div>
             </div>

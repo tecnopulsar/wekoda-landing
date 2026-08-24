@@ -32,6 +32,133 @@
   animation: locate-glow 1.2s ease-in-out infinite;
 }
 
+/* Hero — visual animado de la topología IoT-over-IP. */
+@keyframes hero-wire-flow {
+  0% {
+    transform: translateX(-140%);
+  }
+  100% {
+    transform: translateX(420%);
+  }
+}
+
+@keyframes hero-node-drift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes hero-core-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 hsl(var(--primary) / 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 14px hsl(var(--primary) / 0);
+  }
+}
+
+@keyframes hero-ping {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.4);
+  }
+}
+
+@keyframes hero-bar-rise {
+  0%,
+  100% {
+    transform: scaleY(0.55);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes hero-log-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@keyframes hero-glow-drift {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.06);
+  }
+}
+
+.hero-wire {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.18), transparent);
+}
+
+.hero-wire::after {
+  content: "";
+  position: absolute;
+  inset-block: -1px;
+  width: 35%;
+  background: linear-gradient(90deg, transparent, hsl(var(--primary)), transparent);
+  animation: hero-wire-flow 2.6s linear infinite;
+}
+
+.hero-wire-reverse::after {
+  animation-direction: reverse;
+  background: linear-gradient(90deg, transparent, hsl(152 76% 55%), transparent);
+}
+
+.hero-node {
+  animation: hero-node-drift 5s ease-in-out infinite;
+}
+
+.hero-core {
+  animation: hero-core-pulse 2.4s ease-out infinite;
+}
+
+.hero-ping {
+  animation: hero-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.hero-bar {
+  transform-origin: bottom;
+  animation: hero-bar-rise 2.8s ease-in-out infinite;
+}
+
+.hero-log {
+  animation: hero-log-in 0.4s ease-out;
+}
+
+.hero-glow {
+  animation: hero-glow-drift 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-wire::after,
+  .hero-node,
+  .hero-core,
+  .hero-ping,
+  .hero-bar,
+  .hero-log,
+  .hero-glow {
+    animation: none;
+  }
+}
+
 /* DevBlog article typography — minimal prose sin depender de @tailwindcss/typography. */
 .devblog-prose {
   @apply text-base leading-relaxed text-foreground;
