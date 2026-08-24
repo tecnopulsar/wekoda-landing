@@ -316,6 +316,50 @@ export const deploymentPlans: DeploymentPlan[] = [
   }
 ];
 
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+/** Preguntas reales de preventa. También alimentan el structured data de FAQ. */
+export const faqItems: FaqItem[] = [
+  {
+    question: "¿Qué es exactamente WeKoda IoT?",
+    answer:
+      "Es una plataforma de gestión de dispositivos conectados. Centraliza el inventario de la flota, la ejecución de comandos, la telemetría, la actualización remota de firmware y la automatización, todo bajo un modelo de seguridad Zero Trust donde el navegador nunca toca el broker MQTT."
+  },
+  {
+    question: "¿Qué dispositivos puedo conectar?",
+    answer:
+      "Hoy operamos placas ESP32, ESP32-C3, ESP8266 y equipos Linux sobre Raspberry Pi. Cada modelo se registra en un catálogo de hardware con su firmware correspondiente. Si tu equipo habla MQTT y respeta el contrato de la plataforma, se integra sin desarrollo adicional."
+  },
+  {
+    question: "¿Puedo controlar equipos que solo funcionan con control remoto infrarrojo?",
+    answer:
+      "Sí. La vertical IR Repeater captura las señales de cualquier control remoto y las reemite por IP desde el dispositivo instalado en la sala. Televisores, aires acondicionados, decodificadores y proyectores quedan disponibles como mandos virtuales en el navegador y se pueden programar por agenda."
+  },
+  {
+    question: "¿Necesito conexión permanente a internet?",
+    answer:
+      "No. El Gateway WeKoda corre el backend, el broker MQTT, la base de datos y el panel dentro de tu propia red. La instalación sigue funcionando en LAN aunque se caiga el enlace a internet, algo indispensable en plantas industriales, hoteles y edificios corporativos."
+  },
+  {
+    question: "¿Cómo se actualiza el firmware de una flota grande?",
+    answer:
+      "Con actualización OTA desde el panel. Cada modelo de hardware tiene su catálogo de versiones y la plataforma registra el historial de cada intento, con tasa de éxito, fallos y duración promedio. No hace falta ir hasta el sitio ni reflashear placa por placa."
+  },
+  {
+    question: "¿Sirve para administrar varias empresas o sucursales?",
+    answer:
+      "Sí, el aislamiento multi-tenant es parte del modelo de datos, no un filtro agregado después. Cada organización tiene sus dispositivos, sus miembros y sus roles de propietario, administrador y operador, y toda acción sensible queda registrada en la auditoría."
+  },
+  {
+    question: "¿Puedo instalar WeKoda en mi propia infraestructura?",
+    answer:
+      "Sí, mediante la licencia de instalación. Desplegás la plataforma completa en tu nube privada o datacenter, con acompañamiento de integración y acceso al catálogo de firmware por modelo de hardware."
+  }
+];
+
 /** Opciones del campo de interés en el formulario de contacto. */
 export const contactInterests = [
   "Kit IR Repeater",

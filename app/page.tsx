@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ShieldCheck, CheckCircle2, ArrowRight, Cpu, Network, Radio } from "lucide-react";
+import type { Metadata } from "next";
+import { ShieldCheck, CheckCircle2, ArrowRight, ChevronDown, Cpu, Network, Radio } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ContactForm } from "@/components/ui-public/ContactForm";
 import { DevBlogInvitePopup } from "@/components/ui-public/DevBlogInvitePopup";
@@ -9,8 +10,57 @@ import { HeroNetworkVisual } from "@/components/ui-public/HeroNetworkVisual";
 import { PlatformShowcase } from "@/components/ui-public/PlatformShowcase";
 import { IrJourney } from "@/components/ui-public/IrJourney";
 import { DeploymentPlans } from "@/components/ui-public/DeploymentPlans";
-import { verticalApps } from "@/lib/platform-content";
+import { verticalApps, faqItems } from "@/lib/platform-content";
 import { getAppLoginUrl } from "@/lib/constants";
+import { SITE_NAME, absoluteUrl, getSiteUrl } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: "WeKoda — Plataforma IoT para gestionar y automatizar dispositivos",
+  description:
+    "Gestioná tu flota de dispositivos IoT desde un solo panel: inventario en vivo, actualización OTA remota, control por espacios, mandos infrarrojos sobre IP y seguridad Zero Trust.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: getSiteUrl(),
+    title: "WeKoda — Plataforma IoT para gestionar y automatizar dispositivos",
+    description:
+      "Inventario de flota, OTA remoto, control por espacios y automatización sobre un modelo de seguridad Zero Trust."
+  }
+};
+
+const softwareSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: SITE_NAME,
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web, Linux",
+  url: getSiteUrl(),
+  image: absoluteUrl("/opengraph-image"),
+  description:
+    "Plataforma de gestión de dispositivos IoT con inventario de flota, actualización OTA remota, control por espacios, automatización por agendas y seguridad Zero Trust.",
+  inLanguage: "es-AR",
+  featureList: [
+    "Inventario de flota con capacidades autodescubiertas",
+    "Actualización de firmware OTA con historial",
+    "Control por espacios y escenas",
+    "Mandos virtuales infrarrojos sobre IP",
+    "Automatización por agendas y reglas",
+    "Multi-tenant con roles y auditoría"
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer
+    }
+  }))
+};
 
 /**
  * Sin min-h-screen: el alto lo define el contenido y desaparece el “medio pantalla vacío”.
@@ -327,6 +377,36 @@ export default function LandingPage() {
         </div>
       </section>
 
+      <section id="preguntas" className={`${sectionSnap} border-t border-border/60 bg-white`}>
+        <div className="mx-auto w-full max-w-4xl">
+          <div className="text-center">
+            <p className="text-sm font-semibold uppercase tracking-widest text-secondary">
+              Preguntas frecuentes
+            </p>
+            <h2 className="mt-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl lg:text-4xl">
+              Lo que suelen preguntarnos antes de empezar.
+            </h2>
+          </div>
+
+          <div className="mt-8 divide-y divide-border/60 border-y border-border/60 md:mt-10">
+            {faqItems.map(({ question, answer }) => (
+              <details key={question} className="group py-4">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-base font-semibold text-foreground transition-colors hover:text-primary md:text-lg">
+                  <h3>{question}</h3>
+                  <ChevronDown
+                    className="size-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180"
+                    aria-hidden
+                  />
+                </summary>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
+                  {answer}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="contacto" className={`${sectionSnap} border-t border-border/60 bg-muted/30`}>
         <div className="mx-auto grid w-full max-w-7xl items-start gap-8 lg:grid-cols-2 lg:gap-10">
           <div className="text-left">
@@ -359,6 +439,11 @@ export default function LandingPage() {
       </section>
 
       <DevBlogInvitePopup />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([softwareSchema, faqSchema]) }}
+      />
     </div>
   );
 }

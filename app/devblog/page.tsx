@@ -3,11 +3,29 @@ import type { Metadata } from "next";
 import { ArrowRight, Cpu, ShieldCheck, Radio, Server, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getAllPosts, formatPostDate } from "@/lib/devblog";
+import { SITE_NAME, absoluteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "DevBlog — WeKoda IoT",
+  title: "DevBlog: ingeniería IoT, MQTT y firmware ESP32",
   description:
-    "Ingeniería, seguridad y arquitectura detrás de WeKoda IoT. Contenido técnico para desarrolladores, CTOs y entusiastas de la automatización."
+    "Artículos técnicos sobre arquitectura IoT: contratos MQTT, device shadow, seguridad Zero Trust, firmware ESP32 e infraestructura edge. Escrito por el equipo que construye WeKoda.",
+  keywords: [
+    "blog IoT",
+    "arquitectura IoT",
+    "MQTT",
+    "device shadow",
+    "firmware ESP32",
+    "Zero Trust",
+    "infraestructura edge"
+  ],
+  alternates: { canonical: "/devblog" },
+  openGraph: {
+    type: "website",
+    url: absoluteUrl("/devblog"),
+    title: "DevBlog — Ingeniería IoT, MQTT y firmware ESP32",
+    description:
+      "Cómo pensamos, diseñamos y desplegamos infraestructura de dispositivos conectados. Escrito por los ingenieros que la construyen."
+  }
 };
 
 const audienceHooks = [
@@ -31,8 +49,35 @@ const audienceHooks = [
 export default function DevBlogIndexPage() {
   const posts = getAllPosts();
 
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: `DevBlog — ${SITE_NAME}`,
+    url: absoluteUrl("/devblog"),
+    inLanguage: "es-AR",
+    description:
+      "Artículos técnicos sobre arquitectura IoT, contratos MQTT, firmware ESP32 e infraestructura edge.",
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: absoluteUrl("/")
+    },
+    blogPost: posts.map((post) => ({
+      "@type": "BlogPosting",
+      headline: post.title,
+      description: post.summary,
+      datePublished: post.date,
+      keywords: post.tags.join(", "),
+      url: absoluteUrl(`/devblog/${post.slug}`)
+    }))
+  };
+
   return (
     <div className="flex w-full flex-1 flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+      />
       <section className="relative overflow-hidden border-b border-border/60 bg-slate-950 text-slate-50">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,0.18),transparent_55%),radial-gradient(circle_at_80%_10%,rgba(16,185,129,0.15),transparent_50%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[length:32px_32px]" />

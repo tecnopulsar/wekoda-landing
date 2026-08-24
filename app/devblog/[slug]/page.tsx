@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { ArrowLeft, ArrowRight, CalendarDays, Clock, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getAllPosts, getPostBySlug, getPostSlugs, formatPostDate } from "@/lib/devblog";
+import { ORGANIZATION, SITE_NAME, absoluteUrl } from "@/lib/seo";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -16,10 +17,29 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
-  if (!post) return { title: "Post no encontrado — DevBlog WeKoda" };
+  if (!post) return { title: "Post no encontrado" };
+
+  const url = absoluteUrl(`/devblog/${post.slug}`);
+
   return {
-    title: `${post.title} — DevBlog WeKoda`,
-    description: post.summary
+    title: post.title,
+    description: post.summary,
+    keywords: post.tags,
+    alternates: { canonical: `/devblog/${post.slug}` },
+    openGraph: {
+      type: "article",
+      url,
+      title: post.title,
+      description: post.summary,
+      publishedTime: post.date,
+      tags: post.tags,
+      authors: [ORGANIZATION.legalName]
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.summary
+    }
   };
 }
 
@@ -33,8 +53,33 @@ export default async function DevBlogPostPage({ params }: PageProps) {
   const previousPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
   const nextPost = currentIndex >= 0 && currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.summary,
+    datePublished: post.date,
+    dateModified: post.date,
+    keywords: post.tags.join(", "),
+    inLanguage: "es-AR",
+    mainEntityOfPage: absoluteUrl(`/devblog/${post.slug}`),
+    author: {
+      "@type": "Organization",
+      name: ORGANIZATION.legalName
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: absoluteUrl("/")
+    }
+  };
+
   return (
     <div className="flex w-full flex-1 flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <article className="mx-auto w-full max-w-3xl px-4 pb-16 pt-10 sm:px-6 md:pt-14">
         <Link
           href="/devblog"
