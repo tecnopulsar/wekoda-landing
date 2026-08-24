@@ -36,11 +36,12 @@ export const SITE_KEYWORDS = [
 ];
 
 /**
- * URL pública del sitio, sin barra final. Definir NEXT_PUBLIC_SITE_URL en Vercel
- * para que los enlaces canónicos y las tarjetas de redes sociales sean absolutos.
+ * URL pública del sitio, sin barra final. Debe coincidir con el dominio que
+ * Vercel sirve como principal: el apex redirige a www, y declarar el apex como
+ * canónico obligaría a los buscadores a un salto extra en cada URL.
  */
 export function getSiteUrl(): string {
-  return (process.env.NEXT_PUBLIC_SITE_URL ?? "https://wekoda.lat").replace(/\/$/, "");
+  return (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.wekoda.lat").replace(/\/$/, "");
 }
 
 export function absoluteUrl(path = "/"): string {
