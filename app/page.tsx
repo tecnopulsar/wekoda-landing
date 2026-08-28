@@ -10,7 +10,7 @@ import { HeroNetworkVisual } from "@/components/ui-public/HeroNetworkVisual";
 import { PlatformShowcase } from "@/components/ui-public/PlatformShowcase";
 import { IrJourney } from "@/components/ui-public/IrJourney";
 import { DeploymentPlans } from "@/components/ui-public/DeploymentPlans";
-import { verticalApps, faqItems } from "@/lib/platform-content";
+import { verticalApps, faqItems, heroPreviewCards } from "@/lib/platform-content";
 import { getAppLoginUrl, SHOW_APP_LOGIN } from "@/lib/constants";
 import { SITE_NAME, absoluteUrl, getSiteUrl } from "@/lib/seo";
 
@@ -185,23 +185,48 @@ export default function LandingPage() {
             <HeroNetworkVisual />
           </div>
 
-          <div className="mt-6 w-full rounded-2xl border border-border/70 bg-background/80 p-4 shadow-2xl shadow-primary/5 backdrop-blur-sm md:mt-10 md:p-5">
-            <div className="grid gap-3 md:grid-cols-3 md:gap-4">
-              <div className="rounded-xl border bg-card p-3 text-left transition-colors hover:border-primary/40 md:p-4">
-                <p className="text-xs uppercase tracking-wide text-muted-foreground">Fleet</p>
-                <p className="mt-2 text-2xl font-semibold text-foreground">2.148</p>
-                <p className="text-sm text-muted-foreground">dispositivos activos</p>
-              </div>
-              <div className="rounded-xl border bg-card p-3 text-left transition-colors hover:border-primary/40 md:p-4">
-                <p className="text-xs uppercase tracking-wide text-muted-foreground">Comandos</p>
-                <p className="mt-2 text-2xl font-semibold text-foreground">99.98%</p>
-                <p className="text-sm text-muted-foreground">confirmación transaccional</p>
-              </div>
-              <div className="rounded-xl border bg-card p-3 text-left transition-colors hover:border-primary/40 md:p-4">
-                <p className="text-xs uppercase tracking-wide text-muted-foreground">Tenants</p>
-                <p className="mt-2 text-2xl font-semibold text-foreground">Aislados</p>
-                <p className="text-sm text-muted-foreground">modelo Zero Trust nativo</p>
-              </div>
+          <div className="mt-6 md:mt-10">
+            <div className="mb-3 flex items-end justify-between gap-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                Capturas reales del panel
+              </p>
+              <Link
+                href="#plataforma"
+                data-action="view-platform-previews"
+                data-entity="platform"
+                className="hidden text-xs font-medium text-primary hover:underline sm:inline"
+              >
+                Ver más pantallas
+              </Link>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
+              {heroPreviewCards.map(({ id, label, caption, image, imageAlt }) => (
+                <Link
+                  key={id}
+                  href="#plataforma"
+                  data-action="open-platform-preview"
+                  data-entity="platform-section"
+                  data-row-id={id}
+                  className="group overflow-hidden rounded-2xl border border-border/70 bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg"
+                >
+                  <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                    <Image
+                      src={image}
+                      alt={imageAlt}
+                      fill
+                      className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                      sizes="(min-width: 640px) 33vw, 100vw"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/55 via-transparent to-transparent" />
+                    <div className="absolute inset-x-0 bottom-0 p-3">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-white/80">
+                        {label}
+                      </p>
+                      <p className="mt-0.5 text-sm font-medium text-white">{caption}</p>
+                    </div>
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         </div>

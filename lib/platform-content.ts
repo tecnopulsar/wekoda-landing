@@ -321,6 +321,39 @@ export interface FaqItem {
   answer: string;
 }
 
+/** Minicapturas bajo el hero: evidencia visual en lugar de métricas abstractas. */
+export interface HeroPreviewCard {
+  id: string;
+  label: string;
+  caption: string;
+  image: string;
+  imageAlt: string;
+}
+
+export const heroPreviewCards: HeroPreviewCard[] = [
+  {
+    id: "overview",
+    label: "Resumen",
+    caption: "Estado de la flota en un vistazo",
+    image: "/images/platform/overview/resumen-2.png",
+    imageAlt: "Panel de resumen con el estado de la flota"
+  },
+  {
+    id: "operations",
+    label: "Operaciones",
+    caption: "Salud, OTA y acciones remotas",
+    image: "/images/platform/operaciones/operaciones-1.png",
+    imageAlt: "Pantalla de operaciones con telemetría y actualización OTA"
+  },
+  {
+    id: "spaces",
+    label: "Espacios",
+    caption: "Control por ambiente y escenas",
+    image: "/images/platform/espacios/espacios-1.png",
+    imageAlt: "Control de iluminación y escenas por espacio"
+  }
+];
+
 /** Preguntas reales de preventa. También alimentan el structured data de FAQ. */
 export const faqItems: FaqItem[] = [
   {
