@@ -23,6 +23,15 @@ export function PublicNavbar() {
             asChild
             className="hidden text-base font-medium text-muted-foreground hover:text-primary md:inline-flex"
           >
+            <Link href="/soluciones/ir-repeater" data-action="nav-ir-repeater" data-entity="ir-repeater">
+              IR Repeater
+            </Link>
+          </Button>
+          <Button
+            variant="ghost"
+            asChild
+            className="hidden text-base font-medium text-muted-foreground hover:text-primary md:inline-flex"
+          >
             <Link href="/devblog" data-action="nav-devblog" data-entity="devblog">
               DevBlog
             </Link>

@@ -127,6 +127,7 @@ export interface VerticalApp {
   hardware: string;
   description: string;
   available: boolean;
+  href?: string;
   Icon: LucideIcon;
 }
 
@@ -139,6 +140,7 @@ export const verticalApps: VerticalApp[] = [
     description:
       "Captura y emisión de señales infrarrojas sobre IP, con biblioteca de códigos y hasta cuatro zonas por equipo.",
     available: true,
+    href: "/soluciones/ir-repeater",
     Icon: Repeat2
   },
   {

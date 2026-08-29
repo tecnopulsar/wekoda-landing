@@ -277,30 +277,55 @@ export default function LandingPage() {
           </div>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 md:mt-10 lg:grid-cols-3">
-            {verticalApps.map(({ id, name, hardware, description, available, Icon }) => (
-              <article
-                key={id}
-                className="flex flex-col rounded-2xl border border-border/70 bg-card p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <span className="inline-flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                    <Icon className="size-5" aria-hidden />
-                  </span>
-                  <span
-                    className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${
-                      available
-                        ? "bg-emerald-50 text-emerald-700"
-                        : "bg-muted text-muted-foreground"
-                    }`}
-                  >
-                    {available ? "Disponible" : "En desarrollo"}
-                  </span>
-                </div>
-                <h3 className="mt-4 text-base font-semibold text-foreground">{name}</h3>
-                <p className="mt-1 font-mono text-[11px] text-muted-foreground/80">{hardware}</p>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{description}</p>
-              </article>
-            ))}
+            {verticalApps.map(({ id, name, hardware, description, available, href, Icon }) => {
+              const card = (
+                <>
+                  <div className="flex items-start justify-between gap-3">
+                    <span className="inline-flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <Icon className="size-5" aria-hidden />
+                    </span>
+                    <span
+                      className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${
+                        available
+                          ? "bg-emerald-50 text-emerald-700"
+                          : "bg-muted text-muted-foreground"
+                      }`}
+                    >
+                      {available ? "Disponible" : "En desarrollo"}
+                    </span>
+                  </div>
+                  <h3 className="mt-4 text-base font-semibold text-foreground">{name}</h3>
+                  <p className="mt-1 font-mono text-[11px] text-muted-foreground/80">{hardware}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{description}</p>
+                  {href ? (
+                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
+                      Ver solución
+                      <ArrowRight className="size-4" aria-hidden />
+                    </span>
+                  ) : null}
+                </>
+              );
+
+              const cardClass =
+                "flex h-full flex-col rounded-2xl border border-border/70 bg-card p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md";
+
+              return href ? (
+                <Link
+                  key={id}
+                  href={href}
+                  data-action="open-vertical"
+                  data-entity="vertical"
+                  data-row-id={id}
+                  className={cardClass}
+                >
+                  {card}
+                </Link>
+              ) : (
+                <article key={id} className={cardClass}>
+                  {card}
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -322,6 +347,18 @@ export default function LandingPage() {
 
           <div className="mt-8 md:mt-10">
             <IrJourney />
+          </div>
+          <div className="mt-8 text-center">
+            <Button asChild variant="outline" className="rounded-full border-primary/30 text-primary">
+              <Link
+                href="/soluciones/ir-repeater"
+                data-action="open-ir-repeater-page"
+                data-entity="ir-repeater"
+              >
+                Ver WeKoda IR Repeater
+                <ArrowRight className="size-4" aria-hidden />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

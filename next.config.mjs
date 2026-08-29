@@ -18,6 +18,15 @@ const nextConfig = {
         pathname: "/**"
       }
     ]
+  },
+  async redirects() {
+    return [
+      {
+        source: "/ir-repeater",
+        destination: "/soluciones/ir-repeater",
+        permanent: true
+      }
+    ];
   }
 };
 

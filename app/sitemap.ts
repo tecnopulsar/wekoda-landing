@@ -20,6 +20,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8
     },
+    {
+      url: `${siteUrl}/soluciones/ir-repeater`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.85
+    },
     ...posts.map((post) => ({
       url: `${siteUrl}/devblog/${post.slug}`,
       lastModified: new Date(post.date),

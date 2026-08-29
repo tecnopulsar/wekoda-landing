@@ -17,6 +17,18 @@ export function ContactForm() {
   const [interest, setInterest] = useState<string>(DEFAULT_INTEREST);
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const fromQuery = params.get("interes");
+    if (
+      fromQuery &&
+      contactInterests.includes(fromQuery as (typeof contactInterests)[number])
+    ) {
+      setInterest(fromQuery);
+      setStatus("idle");
+    }
+  }, []);
+
+  useEffect(() => {
     const onSelectInterest = (event: Event) => {
       const detail = (event as CustomEvent<string>).detail;
       if (contactInterests.includes(detail as (typeof contactInterests)[number])) {
