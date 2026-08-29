@@ -3,6 +3,10 @@ import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { SITE_NAME } from "@/lib/seo";
 
+/**
+ * 1200×630 (estándar OG). WhatsApp recorta a un cuadrado ~1:1, casi siempre
+ * desde el centro. Todo lo importante vive en la zona central segura.
+ */
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt = `${SITE_NAME} — Plataforma IoT over IP`;
@@ -20,40 +24,62 @@ export default async function OpenGraphImage() {
           width: "100%",
           height: "100%",
           display: "flex",
-          background: "#f1f5f9"
+          alignItems: "center",
+          justifyContent: "center",
+          background: "#0b1220"
         }}
       >
-        {/* Left: brand */}
+        {/* Side fillers (fuera del crop cuadrado de WhatsApp) */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            background:
+              "radial-gradient(circle at 50% 50%, rgba(14,165,233,0.25), transparent 55%)"
+          }}
+        />
+
+        {/* Safe square ~630×630 centered */}
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between",
-            width: "48%",
-            padding: "56px 48px 56px 64px",
-            background: "linear-gradient(160deg, #ffffff 0%, #e8f4fc 55%, #dbeafe 100%)"
+            width: 630,
+            height: 630,
+            overflow: "hidden",
+            borderRadius: 28,
+            background: "#ffffff",
+            boxShadow: "0 24px 80px rgba(0,0,0,0.45)"
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+          {/* Brand band */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "28px 24px 20px",
+              background: "linear-gradient(180deg, #ffffff 0%, #e0f2fe 100%)"
+            }}
+          >
             <div
               style={{
                 display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: 56,
-                height: 56,
-                borderRadius: 16,
-                background: "#0ea5e9",
-                fontSize: 24,
+                fontSize: 56,
                 fontWeight: 900,
-                color: "#ffffff"
+                letterSpacing: -2,
+                lineHeight: 1
               }}
             >
-              WK
+              <span style={{ color: "#ef4d63" }}>We</span>
+              <span style={{ color: "#0284c7", marginLeft: 8 }}>Koda</span>
             </div>
             <div
               style={{
                 display: "flex",
+                marginTop: 10,
                 fontSize: 18,
                 fontWeight: 700,
                 letterSpacing: 2,
@@ -65,102 +91,46 @@ export default async function OpenGraphImage() {
             </div>
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <div
-              style={{
-                display: "flex",
-                fontSize: 84,
-                fontWeight: 900,
-                letterSpacing: -3,
-                lineHeight: 0.95
-              }}
-            >
-              <span style={{ color: "#ef4d63" }}>We</span>
-              <span style={{ color: "#0284c7", marginLeft: 8 }}>Koda</span>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                marginTop: 24,
-                fontSize: 30,
-                fontWeight: 600,
-                lineHeight: 1.3,
-                color: "#0f172a",
-                maxWidth: 420
-              }}
-            >
-              Gestioná y automatizá dispositivos conectados.
-            </div>
-          </div>
-
-          <div style={{ display: "flex", gap: 10 }}>
-            {["Fleet", "OTA", "Zero Trust", "IR"].map((chip) => (
-              <div
-                key={chip}
-                style={{
-                  display: "flex",
-                  padding: "8px 14px",
-                  borderRadius: 999,
-                  background: "#0ea5e9",
-                  fontSize: 18,
-                  fontWeight: 700,
-                  color: "#ffffff"
-                }}
-              >
-                {chip}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Right: real product photo */}
-        <div
-          style={{
-            display: "flex",
-            position: "relative",
-            width: "52%",
-            height: "100%",
-            background: "#38bdf8",
-            overflow: "hidden"
-          }}
-        >
-          <img
-            src={kitSrc}
-            width={624}
-            height={630}
+          {/* Product fills the rest of the square */}
+          <div
             style={{
+              display: "flex",
+              position: "relative",
+              flex: 1,
               width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "center"
-            }}
-          />
-          <div
-            style={{
-              position: "absolute",
-              left: 0,
-              top: 0,
-              bottom: 0,
-              width: 48,
-              display: "flex",
-              background: "linear-gradient(90deg, #dbeafe, transparent)"
-            }}
-          />
-          <div
-            style={{
-              position: "absolute",
-              right: 28,
-              bottom: 28,
-              display: "flex",
-              padding: "12px 18px",
-              borderRadius: 14,
-              background: "rgba(15,23,42,0.82)",
-              color: "#ffffff",
-              fontSize: 20,
-              fontWeight: 700
+              overflow: "hidden",
+              background: "#38bdf8"
             }}
           >
-            WeKoda IR Repeater
+            <img
+              src={kitSrc}
+              width={630}
+              height={430}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center top"
+              }}
+            />
+            <div
+              style={{
+                position: "absolute",
+                left: 16,
+                right: 16,
+                bottom: 16,
+                display: "flex",
+                justifyContent: "center",
+                padding: "10px 14px",
+                borderRadius: 12,
+                background: "rgba(15,23,42,0.82)",
+                color: "#ffffff",
+                fontSize: 18,
+                fontWeight: 700
+              }}
+            >
+              Plataforma IoT · IR Repeater
+            </div>
           </div>
         </div>
       </div>
