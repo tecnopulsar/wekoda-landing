@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { SITE_NAME } from "@/lib/seo";
 
@@ -5,7 +7,12 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt = `${SITE_NAME} — Plataforma IoT over IP`;
 
-export default function OpenGraphImage() {
+export default async function OpenGraphImage() {
+  const kitPhoto = await readFile(
+    join(process.cwd(), "public/images/verticals/ir-repeater/kit-connected.jpg")
+  );
+  const kitSrc = `data:image/jpeg;base64,${kitPhoto.toString("base64")}`;
+
   return new ImageResponse(
     (
       <div
@@ -13,272 +20,147 @@ export default function OpenGraphImage() {
           width: "100%",
           height: "100%",
           display: "flex",
-          position: "relative",
-          overflow: "hidden",
-          background: "#050a14"
+          background: "#f1f5f9"
         }}
       >
-        {/* Atmosphere */}
+        {/* Left: brand */}
         <div
           style={{
-            position: "absolute",
-            inset: 0,
             display: "flex",
-            background:
-              "radial-gradient(circle at 18% 20%, rgba(14,165,233,0.35), transparent 42%), radial-gradient(circle at 82% 70%, rgba(239,77,99,0.22), transparent 40%), radial-gradient(circle at 55% 40%, rgba(56,189,248,0.12), transparent 50%)"
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            display: "flex",
-            opacity: 0.35,
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
-            backgroundSize: "48px 48px"
-          }}
-        />
-
-        {/* Content */}
-        <div
-          style={{
-            position: "relative",
-            display: "flex",
-            width: "100%",
-            height: "100%",
-            padding: "64px 72px",
-            alignItems: "center",
-            justifyContent: "space-between"
+            flexDirection: "column",
+            justifyContent: "space-between",
+            width: "48%",
+            padding: "56px 48px 56px 64px",
+            background: "linear-gradient(160deg, #ffffff 0%, #e8f4fc 55%, #dbeafe 100%)"
           }}
         >
-          {/* Brand column — survives square crop */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              maxWidth: 620
-            }}
-          >
+          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: 12,
-                marginBottom: 28
+                justifyContent: "center",
+                width: 56,
+                height: 56,
+                borderRadius: 16,
+                background: "#0ea5e9",
+                fontSize: 24,
+                fontWeight: 900,
+                color: "#ffffff"
               }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  width: 52,
-                  height: 52,
-                  borderRadius: 14,
-                  background: "rgba(14,165,233,0.18)",
-                  border: "2px solid rgba(14,165,233,0.55)",
-                  fontSize: 22,
-                  fontWeight: 900,
-                  color: "#38bdf8"
-                }}
-              >
-                WK
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  fontSize: 18,
-                  fontWeight: 700,
-                  letterSpacing: 3,
-                  textTransform: "uppercase",
-                  color: "#7dd3fc"
-                }}
-              >
-                IoT over IP
-              </div>
+              WK
             </div>
-
             <div
               style={{
                 display: "flex",
-                fontSize: 96,
+                fontSize: 18,
+                fontWeight: 700,
+                letterSpacing: 2,
+                textTransform: "uppercase",
+                color: "#0369a1"
+              }}
+            >
+              IoT over IP
+            </div>
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div
+              style={{
+                display: "flex",
+                fontSize: 84,
                 fontWeight: 900,
-                letterSpacing: -4,
+                letterSpacing: -3,
                 lineHeight: 0.95
               }}
             >
               <span style={{ color: "#ef4d63" }}>We</span>
-              <span style={{ color: "#0ea5e9", marginLeft: 10 }}>Koda</span>
+              <span style={{ color: "#0284c7", marginLeft: 8 }}>Koda</span>
             </div>
-
             <div
               style={{
                 display: "flex",
-                marginTop: 28,
-                fontSize: 34,
+                marginTop: 24,
+                fontSize: 30,
                 fontWeight: 600,
-                lineHeight: 1.25,
-                color: "#e2e8f0",
-                maxWidth: 560
+                lineHeight: 1.3,
+                color: "#0f172a",
+                maxWidth: 420
               }}
             >
-              Operá dispositivos como infraestructura.
-            </div>
-
-            <div
-              style={{
-                display: "flex",
-                gap: 12,
-                marginTop: 36
-              }}
-            >
-              {["Fleet", "OTA", "Zero Trust"].map((chip) => (
-                <div
-                  key={chip}
-                  style={{
-                    display: "flex",
-                    padding: "10px 18px",
-                    borderRadius: 999,
-                    border: "1px solid rgba(14,165,233,0.35)",
-                    background: "rgba(14,165,233,0.12)",
-                    fontSize: 20,
-                    fontWeight: 600,
-                    color: "#bae6fd"
-                  }}
-                >
-                  {chip}
-                </div>
-              ))}
+              Gestioná y automatizá dispositivos conectados.
             </div>
           </div>
 
-          {/* Network visual */}
+          <div style={{ display: "flex", gap: 10 }}>
+            {["Fleet", "OTA", "Zero Trust", "IR"].map((chip) => (
+              <div
+                key={chip}
+                style={{
+                  display: "flex",
+                  padding: "8px 14px",
+                  borderRadius: 999,
+                  background: "#0ea5e9",
+                  fontSize: 18,
+                  fontWeight: 700,
+                  color: "#ffffff"
+                }}
+              >
+                {chip}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Right: real product photo */}
+        <div
+          style={{
+            display: "flex",
+            position: "relative",
+            width: "52%",
+            height: "100%",
+            background: "#38bdf8",
+            overflow: "hidden"
+          }}
+        >
+          <img
+            src={kitSrc}
+            width={624}
+            height={630}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center"
+            }}
+          />
           <div
             style={{
+              position: "absolute",
+              left: 0,
+              top: 0,
+              bottom: 0,
+              width: 48,
               display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 18,
-              width: 380
+              background: "linear-gradient(90deg, #dbeafe, transparent)"
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              right: 28,
+              bottom: 28,
+              display: "flex",
+              padding: "12px 18px",
+              borderRadius: 14,
+              background: "rgba(15,23,42,0.82)",
+              color: "#ffffff",
+              fontSize: 20,
+              fontWeight: 700
             }}
           >
-            {/* Edge devices */}
-            <div style={{ display: "flex", gap: 14 }}>
-              {["IR", "LED", "I/O"].map((label) => (
-                <div
-                  key={label}
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: 96,
-                    height: 72,
-                    borderRadius: 18,
-                    border: "1px solid rgba(255,255,255,0.14)",
-                    background: "rgba(15,23,42,0.85)",
-                    color: "#f8fafc",
-                    fontSize: 22,
-                    fontWeight: 700
-                  }}
-                >
-                  {label}
-                  <div
-                    style={{
-                      display: "flex",
-                      marginTop: 6,
-                      width: 8,
-                      height: 8,
-                      borderRadius: 999,
-                      background: "#34d399",
-                      boxShadow: "0 0 12px rgba(52,211,153,0.9)"
-                    }}
-                  />
-                </div>
-              ))}
-            </div>
-
-            {/* Connector */}
-            <div
-              style={{
-                display: "flex",
-                width: 4,
-                height: 36,
-                borderRadius: 999,
-                background: "linear-gradient(#0ea5e9, #34d399)"
-              }}
-            />
-
-            {/* Gateway */}
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                width: 220,
-                height: 110,
-                borderRadius: 24,
-                border: "2px solid rgba(14,165,233,0.55)",
-                background: "rgba(14,165,233,0.16)",
-                boxShadow: "0 0 40px rgba(14,165,233,0.35)"
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  fontSize: 26,
-                  fontWeight: 800,
-                  color: "#e0f2fe"
-                }}
-              >
-                Gateway
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  marginTop: 6,
-                  fontSize: 16,
-                  fontWeight: 600,
-                  color: "#7dd3fc"
-                }}
-              >
-                Zero Trust · MQTT
-              </div>
-            </div>
-
-            {/* Connector */}
-            <div
-              style={{
-                display: "flex",
-                width: 4,
-                height: 36,
-                borderRadius: 999,
-                background: "linear-gradient(#34d399, #0ea5e9)"
-              }}
-            />
-
-            {/* Panel */}
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: 280,
-                height: 64,
-                borderRadius: 18,
-                border: "1px solid rgba(255,255,255,0.16)",
-                background: "rgba(15,23,42,0.9)",
-                fontSize: 22,
-                fontWeight: 700,
-                color: "#f8fafc"
-              }}
-            >
-              Panel WeKoda
-            </div>
+            WeKoda IR Repeater
           </div>
         </div>
       </div>
