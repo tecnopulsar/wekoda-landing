@@ -36,6 +36,12 @@ export const metadata: Metadata = {
         alt: "Kit WeKoda IR Repeater con emisor, receptor y alimentación USB"
       }
     ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [irRepeaterImages.hero]
   }
 };
 

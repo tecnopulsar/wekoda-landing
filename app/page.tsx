@@ -25,6 +25,13 @@ export const metadata: Metadata = {
     title: "WeKoda — Plataforma IoT para gestionar y automatizar dispositivos",
     description:
       "Inventario de flota, OTA remoto, control por espacios y automatización sobre un modelo de seguridad Zero Trust."
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WeKoda — Plataforma IoT para gestionar y automatizar dispositivos",
+    description:
+      "Inventario de flota, OTA remoto, control por espacios y automatización sobre un modelo de seguridad Zero Trust.",
+    images: [absoluteUrl("/opengraph-image")]
   }
 };
 
