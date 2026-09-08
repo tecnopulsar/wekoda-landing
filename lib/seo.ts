@@ -1,5 +1,9 @@
 export const SITE_NAME = "WeKoda IoT";
 
+/** Logo oficial WeKoda (wordmark + tagline). */
+export const BRAND_LOGO_SRC = "/images/brand/Wekoda-iot_over_ip.jpg";
+export const BRAND_LOGO_ALT = "WeKoda — platform for IoT-over-IP";
+
 export const SITE_DESCRIPTION =
   "Plataforma IoT para gestionar, asegurar y automatizar dispositivos conectados: inventario de flota, OTA remoto, control por espacios y seguridad Zero Trust.";
 

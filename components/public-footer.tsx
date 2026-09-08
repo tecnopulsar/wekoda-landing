@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { MapPin, Phone, Mail, Linkedin, Instagram } from "lucide-react";
+import { BrandLogo } from "@/components/brand-logo";
 import { getAppLoginUrl, SHOW_APP_LOGIN } from "@/lib/constants";
 
 /** Actualizar con las URLs oficiales de la marca cuando estén disponibles. */
@@ -25,10 +26,15 @@ export function PublicFooter() {
       <div className="container mx-auto max-w-7xl px-4 py-8 md:px-8 md:py-10">
         <div className="grid gap-8 md:grid-cols-2 md:gap-10 lg:grid-cols-4 lg:gap-8">
           <div className="lg:col-span-1">
-            <p className="text-lg font-black tracking-tighter">
-              <span className="text-secondary">We</span>
-              <span className="text-primary">Koda</span>
-            </p>
+            <Link
+              href="/"
+              className="inline-block rounded-md bg-white px-2 py-1"
+              data-action="nav-home-footer"
+              data-entity="brand"
+              aria-label="WeKoda — inicio"
+            >
+              <BrandLogo className="h-9 md:h-10" />
+            </Link>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-zinc-400">
               Plataforma de orquestación y seguridad para dispositivos en el edge.
             </p>

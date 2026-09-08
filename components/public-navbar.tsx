@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Hexagon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { BrandLogo } from "@/components/brand-logo";
 import { getAppLoginUrl, SHOW_APP_LOGIN } from "@/lib/constants";
 
 export function PublicNavbar() {
@@ -9,13 +9,12 @@ export function PublicNavbar() {
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-8">
         <Link
           href="/"
-          className="flex items-center gap-2 transition-opacity hover:opacity-90"
+          className="flex items-center transition-opacity hover:opacity-90"
+          data-action="nav-home"
+          data-entity="brand"
+          aria-label="WeKoda — inicio"
         >
-          <Hexagon className="h-6 w-6 shrink-0 text-primary fill-primary/10" aria-hidden />
-          <div className="text-2xl font-black tracking-tighter md:text-3xl">
-            <span className="text-secondary">We</span>
-            <span className="ml-1 text-primary">Koda</span>
-          </div>
+          <BrandLogo priority />
         </Link>
         <div className="flex items-center gap-2 md:gap-4">
           <Button

@@ -60,7 +60,7 @@ const organizationSchema = {
   name: SITE_NAME,
   legalName: ORGANIZATION.legalName,
   url: getSiteUrl(),
-  logo: absoluteUrl("/icon"),
+  logo: absoluteUrl("/images/brand/Wekoda-iot_over_ip.jpg"),
   email: ORGANIZATION.email,
   telephone: ORGANIZATION.phone,
   address: {
