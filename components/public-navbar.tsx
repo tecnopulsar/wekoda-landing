@@ -31,6 +31,15 @@ export function PublicNavbar() {
             asChild
             className="hidden text-base font-medium text-muted-foreground hover:text-primary md:inline-flex"
           >
+            <Link href="/soluciones/digital-signage" data-action="nav-digital-signage" data-entity="digital-signage">
+              Digital Signage
+            </Link>
+          </Button>
+          <Button
+            variant="ghost"
+            asChild
+            className="hidden text-base font-medium text-muted-foreground hover:text-primary md:inline-flex"
+          >
             <Link href="/devblog" data-action="nav-devblog" data-entity="devblog">
               DevBlog
             </Link>

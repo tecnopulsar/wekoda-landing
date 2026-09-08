@@ -194,7 +194,8 @@ export const verticalApps: VerticalApp[] = [
     hardware: "rpi4b-signage-player-v1",
     description:
       "Reproductor de cartelería digital sobre Raspberry Pi, administrado desde la misma consola que el resto de la flota.",
-    available: false,
+    available: true,
+    href: "/soluciones/digital-signage",
     Icon: Monitor
   }
 ];
@@ -398,6 +399,7 @@ export const faqItems: FaqItem[] = [
 /** Opciones del campo de interés en el formulario de contacto. */
 export const contactInterests = [
   "Kit IR Repeater",
+  "Digital Signage",
   "Gateway WeKoda (on-premise)",
   "Licencia de instalación",
   "Integración a medida",

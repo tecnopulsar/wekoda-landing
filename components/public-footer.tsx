@@ -148,6 +148,16 @@ export function PublicFooter() {
             <ul className="mt-4 space-y-2 text-sm">
               <li>
                 <Link
+                  href="/soluciones/digital-signage"
+                  className="text-zinc-400 transition-colors hover:text-white"
+                  data-action="nav-digital-signage-footer"
+                  data-entity="digital-signage"
+                >
+                  Digital Signage
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/soluciones/ir-repeater"
                   className="text-zinc-400 transition-colors hover:text-white"
                   data-action="nav-ir-repeater-footer"

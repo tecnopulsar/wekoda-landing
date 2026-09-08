@@ -25,6 +25,11 @@ const nextConfig = {
         source: "/ir-repeater",
         destination: "/soluciones/ir-repeater",
         permanent: true
+      },
+      {
+        source: "/digital-signage",
+        destination: "/soluciones/digital-signage",
+        permanent: true
       }
     ];
   }

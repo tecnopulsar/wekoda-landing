@@ -26,6 +26,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.85
     },
+    {
+      url: `${siteUrl}/soluciones/digital-signage`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.85
+    },
     ...posts.map((post) => ({
       url: `${siteUrl}/devblog/${post.slug}`,
       lastModified: new Date(post.date),
