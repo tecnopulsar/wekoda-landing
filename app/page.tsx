@@ -20,39 +20,59 @@ import { SignageJourney } from "@/components/ui-public/SignageJourney";
 import { DeploymentPlans } from "@/components/ui-public/DeploymentPlans";
 import { verticalApps, faqItems, heroPreviewCards } from "@/lib/platform-content";
 import { getAppLoginUrl, SHOW_APP_LOGIN } from "@/lib/constants";
-import { SITE_NAME, absoluteUrl, getSiteUrl } from "@/lib/seo";
+import {
+  BRAND_ALTERNATE_NAMES,
+  BRAND_DISAMBIGUATION,
+  BRAND_NAME,
+  SITE_DESCRIPTION_SHORT,
+  SITE_KEYWORDS,
+  SITE_NAME,
+  absoluteUrl,
+  getSiteUrl
+} from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "WeKoda — Cartelería digital y plataforma IoT en tu red",
-  description:
-    "Cartelería pensada en dos equipos: Marketing arma campañas; IT opera la flota, publica y da soporte. Mismo panel, roles distintos, trabajo colaborativo on‑prem.",
+  title: "WeKoda — CMS Signage e IoT-over-IP para Marketing, IT y dirección",
+  description: `${SITE_DESCRIPTION_SHORT} ${BRAND_DISAMBIGUATION}`,
+  keywords: SITE_KEYWORDS,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: getSiteUrl(),
-    title: "WeKoda — Cartelería digital y plataforma IoT en tu red",
-    description:
-      "Marketing: campañas y calendario. IT: operación, publicación y soporte a Marketing. Colaboración en un solo panel en tu LAN."
+    siteName: BRAND_NAME,
+    title: "WeKoda — CMS Signage e IoT-over-IP",
+    description: SITE_DESCRIPTION_SHORT
   },
   twitter: {
     card: "summary_large_image",
-    title: "WeKoda — Cartelería digital y plataforma IoT en tu red",
-    description:
-      "Marketing: campañas y calendario. IT: operación, publicación y soporte a Marketing. Colaboración en un solo panel en tu LAN.",
+    title: "WeKoda — CMS Signage e IoT-over-IP",
+    description: SITE_DESCRIPTION_SHORT,
     images: [absoluteUrl("/opengraph-image")]
   }
+};
+
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: `Inicio — ${BRAND_NAME}`,
+  url: getSiteUrl(),
+  inLanguage: "es-AR",
+  isPartOf: { "@type": "WebSite", name: BRAND_NAME, url: getSiteUrl() },
+  about: { "@type": "Brand", name: BRAND_NAME, alternateName: [...BRAND_ALTERNATE_NAMES] },
+  description: SITE_DESCRIPTION_SHORT
 };
 
 const softwareSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: SITE_NAME,
+  name: `${BRAND_NAME} Platform`,
+  alternateName: [SITE_NAME, ...BRAND_ALTERNATE_NAMES],
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web, Linux",
   url: getSiteUrl(),
   image: absoluteUrl("/opengraph-image"),
   description:
-    "Plataforma IoT-over-IP on‑prem con CMS Signage: campañas, canales, entrega y proof-of-play. Players Raspberry Pi y Samsung Tizen; flota, OTA y automatización bajo Zero Trust.",
+    "WeKoda: plataforma IoT-over-IP y CMS Signage con campañas, canales, proof-of-play y flota. Marca independiente de Škoda automotriz.",
   inLanguage: "es-AR",
   featureList: [
     "Flujo colaborativo Marketing (edición de campañas) e IT (publicación y operación)",
@@ -139,11 +159,12 @@ export default function LandingPage() {
                 CMS Signage · Marketing e IT
               </p>
               <h1 className="mt-4 text-balance text-4xl font-extrabold tracking-tight text-foreground md:text-5xl lg:text-6xl">
-                Campañas para Marketing.{" "}
+                <span className="text-foreground">WeKoda:</span>{" "}
+                campañas para Marketing,{" "}
                 <span className="bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
-                  Operación y soporte para IT
-                </span>
-                , en una sola plataforma.
+                  operación y soporte para IT
+                </span>{" "}
+                en una sola plataforma.
               </h1>
               <p className="mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
                 WeKoda está pensado para trabajar en dupla: Marketing concentra campañas,
@@ -681,7 +702,9 @@ export default function LandingPage() {
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify([softwareSchema, faqSchema]) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([webPageSchema, softwareSchema, faqSchema])
+        }}
       />
     </div>
   );

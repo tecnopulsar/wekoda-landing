@@ -6,10 +6,12 @@ import { getAllPosts, formatPostDate } from "@/lib/devblog";
 import { SITE_NAME, absoluteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "DevBlog: ingeniería IoT, MQTT y firmware ESP32",
+  title: "DevBlog WeKoda: ingeniería IoT, MQTT y firmware ESP32",
   description:
-    "Artículos técnicos sobre arquitectura IoT: contratos MQTT, device shadow, seguridad Zero Trust, firmware ESP32 e infraestructura edge. Escrito por el equipo que construye WeKoda.",
+    "DevBlog oficial de WeKoda (wekoda.lat): arquitectura IoT-over-IP, MQTT, device shadow, Zero Trust y firmware ESP32. No relacionado con Škoda automotriz.",
   keywords: [
+    "WeKoda",
+    "wekoda.lat",
     "blog IoT",
     "arquitectura IoT",
     "MQTT",

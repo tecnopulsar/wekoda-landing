@@ -21,12 +21,15 @@ import { SITE_NAME, absoluteUrl } from "@/lib/seo";
 
 const title = "WeKoda Digital Signage — CMS de cartelería en tu red";
 const description =
-  "Campañas, canales y players Raspberry Pi y Samsung Tizen en tu LAN. Marketing edita; IT aprueba y publica. Proof-of-play y entrega trazable con Zero Trust.";
+  "WeKoda Signage: campañas, canales y players Samsung Tizen y Raspberry Pi. Marketing edita; IT aprueba y publica. Marca WeKoda (wekoda.lat), no Škoda automotriz.";
 
 export const metadata: Metadata = {
   title,
   description,
   keywords: [
+    "WeKoda",
+    "WeKoda Signage",
+    "wekoda.lat",
     "digital signage",
     "cartelería digital",
     "CMS on-prem",

@@ -4,7 +4,9 @@ import { Analytics } from "@vercel/analytics/next";
 import { PublicNavbar } from "@/components/public-navbar";
 import { PublicFooter } from "@/components/public-footer";
 import {
+  BRAND_ALTERNATE_NAMES,
   BRAND_LOGO_SRC,
+  BRAND_NAME,
   ORGANIZATION,
   SITE_DESCRIPTION,
   SITE_KEYWORDS,
@@ -16,12 +18,12 @@ import {
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
-    default: "WeKoda — Plataforma IoT para gestionar y automatizar dispositivos",
-    template: `%s — ${SITE_NAME}`
+    default: "WeKoda — CMS Signage e IoT-over-IP | Cartelería digital",
+    template: `%s — ${BRAND_NAME}`
   },
   description: SITE_DESCRIPTION,
   keywords: SITE_KEYWORDS,
-  applicationName: SITE_NAME,
+  applicationName: BRAND_NAME,
   authors: [{ name: ORGANIZATION.legalName }],
   creator: ORGANIZATION.legalName,
   publisher: ORGANIZATION.legalName,
@@ -33,12 +35,12 @@ export const metadata: Metadata = {
     locale: "es_AR",
     url: getSiteUrl(),
     siteName: SITE_NAME,
-    title: "WeKoda — Plataforma IoT para gestionar y automatizar dispositivos",
+    title: "WeKoda — CMS Signage e IoT-over-IP | Cartelería digital",
     description: SITE_DESCRIPTION
   },
   twitter: {
     card: "summary_large_image",
-    title: "WeKoda — Plataforma IoT",
+    title: "WeKoda — CMS Signage e IoT-over-IP",
     description: SITE_DESCRIPTION
   },
   robots: {
@@ -55,10 +57,22 @@ export const metadata: Metadata = {
   category: "technology"
 };
 
+const brandSchema = {
+  "@context": "https://schema.org",
+  "@type": "Brand",
+  name: BRAND_NAME,
+  alternateName: [...BRAND_ALTERNATE_NAMES],
+  url: getSiteUrl(),
+  logo: absoluteUrl(BRAND_LOGO_SRC),
+  description:
+    "Marca de plataforma IoT-over-IP y cartelería digital WeKoda. No afiliada a Škoda Auto."
+};
+
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: SITE_NAME,
+  name: BRAND_NAME,
+  alternateName: [SITE_NAME, ...BRAND_ALTERNATE_NAMES],
   legalName: ORGANIZATION.legalName,
   url: getSiteUrl(),
   logo: absoluteUrl(BRAND_LOGO_SRC),
@@ -77,10 +91,16 @@ const organizationSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: SITE_NAME,
+  name: BRAND_NAME,
+  alternateName: [SITE_NAME, ...BRAND_ALTERNATE_NAMES],
   url: getSiteUrl(),
   inLanguage: "es-AR",
-  description: SITE_DESCRIPTION
+  description: SITE_DESCRIPTION,
+  publisher: {
+    "@type": "Organization",
+    name: BRAND_NAME,
+    url: getSiteUrl()
+  }
 };
 
 export default function RootLayout({
@@ -100,7 +120,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify([organizationSchema, websiteSchema])
+            __html: JSON.stringify([brandSchema, organizationSchema, websiteSchema])
           }}
         />
       </body>

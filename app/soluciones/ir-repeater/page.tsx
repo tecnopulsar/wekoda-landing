@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   title,
   description,
   keywords: [
+    "WeKoda",
+    "WeKoda IR Repeater",
+    "wekoda.lat",
     "repetidor infrarrojo por IP",
     "control remoto IR sobre IP",
     "IR Repeater",

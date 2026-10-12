@@ -1,11 +1,23 @@
+/** Nombre de marca canónico (siempre esta grafía en SEO visible). */
+export const BRAND_NAME = "WeKoda";
+
 export const SITE_NAME = "WeKoda IoT";
+
+/** Variantes y dominio para schema.org y desambiguación frente a búsquedas erróneas (p. ej. Škoda). */
+export const BRAND_ALTERNATE_NAMES = ["We Koda", "WeKoda IoT", "wekoda.lat", "WeKoda Signage"] as const;
+
+export const BRAND_DISAMBIGUATION =
+  "WeKoda es una marca de plataforma IoT-over-IP y cartelería digital (wekoda.lat). No está relacionada con Škoda Auto ni con vehículos.";
 
 /** Logo oficial WeKoda (wordmark + tagline). */
 export const BRAND_LOGO_SRC = "/images/brand/Wekoda-iot_over_ip.png";
 export const BRAND_LOGO_ALT = "WeKoda — platform for IoT-over-IP";
 
 export const SITE_DESCRIPTION =
-  "Plataforma IoT para gestionar, asegurar y automatizar dispositivos conectados: inventario de flota, OTA remoto, control por espacios y seguridad Zero Trust.";
+  "WeKoda: CMS Signage e IoT-over-IP para empresas. Cartelería digital, flota y automatización en tu red. Marca tecnológica independiente (no Škoda automotriz).";
+
+export const SITE_DESCRIPTION_SHORT =
+  "WeKoda — cartelería digital, CMS Signage y plataforma IoT-over-IP para Marketing, IT y dirección.";
 
 export const ORGANIZATION = {
   legalName: "WeTech",
@@ -24,19 +36,22 @@ export const ORGANIZATION = {
 
 /** Palabras clave objetivo, en el español que usa el mercado local. */
 export const SITE_KEYWORDS = [
-  "plataforma IoT",
-  "gestión de dispositivos IoT",
-  "automatización industrial",
+  "WeKoda",
+  "We Koda",
+  "wekoda",
+  "wekoda.lat",
+  "WeKoda IoT",
+  "WeKoda Signage",
+  "WeKoda cartelería digital",
+  "CMS Signage WeKoda",
+  "plataforma IoT-over-IP",
+  "cartelería digital empresas",
+  "digital signage Samsung Tizen",
+  "proof of play",
+  "MQTT Zero Trust",
   "domótica empresarial",
-  "MQTT",
-  "Zero Trust IoT",
-  "actualización OTA ESP32",
   "repetidor infrarrojo por IP",
-  "control remoto IR sobre IP",
-  "telemetría en tiempo real",
-  "infraestructura edge",
-  "ESP32",
-  "multi-tenant IoT"
+  "Gateway IoT on-prem"
 ];
 
 /**

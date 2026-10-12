@@ -452,6 +452,11 @@ export const heroPreviewCards: HeroPreviewCard[] = [
 /** Preguntas reales de preventa. También alimentan el structured data de FAQ. */
 export const faqItems: FaqItem[] = [
   {
+    question: "¿WeKoda es lo mismo que Škoda (autos)?",
+    answer:
+      "No. WeKoda (wekoda.lat) es una marca de software: plataforma IoT-over-IP y CMS Signage para empresas. No tiene relación con Škoda Auto ni con la industria automotriz. Si buscás cartelería digital o IoT, el sitio correcto es WeKoda."
+  },
+  {
     question: "¿Qué es WeKoda y en qué se diferencia de un CMS de carteles en la nube?",
     answer:
       "WeKoda es una plataforma IoT-over-IP desplegable on‑prem en tu LAN: cartelería, flota y automatización en un solo tenant. No es un SaaS global tipo Yodeck; el Gateway corre backend, MQTT y panel en tu red, con Zero Trust (el navegador nunca accede al broker)."
