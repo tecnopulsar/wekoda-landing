@@ -268,7 +268,7 @@ export const signageJourneySteps: JourneyStep[] = [
     step: "01",
     title: "Subís el contenido",
     description:
-      "Videos e imágenes quedan en la biblioteca de la organización, con vigencia y permisos. Marketing trabaja sin inventario de TVs.",
+      "Marketing sube videos e imágenes a la biblioteca con vigencia; IT define permisos y organización sin mezclar roles.",
     image: signagePanelImage,
     imageAlt: "Biblioteca de contenido Digital Signage en WeKoda"
   },
@@ -277,7 +277,7 @@ export const signageJourneySteps: JourneyStep[] = [
     step: "02",
     title: "Definís canal y audiencia",
     description:
-      "Armás playlists y las asignás a grupos, etiquetas o players. Un solo cambio actualiza todas las sucursales del grupo.",
+      "Marketing propone audiencia y mensaje; IT arma playlists y asignación a grupos o players para toda la red.",
     image: signagePanelImage,
     imageAlt: "Canales y playlists de cartelería digital"
   },
@@ -286,7 +286,7 @@ export const signageJourneySteps: JourneyStep[] = [
     step: "03",
     title: "Planificás la campaña",
     description:
-      "Nombre, fechas y validación antes de publicar. IT aprueba y pone en pausa cuando hace falta; el borrador no llega al HDMI.",
+      "Marketing define nombre y fechas de la campaña; IT valida, publica o pausa. El borrador no llega al HDMI sin operación.",
     image: signagePanelImage,
     imageAlt: "Planificador de campañas de cartelería"
   },
@@ -295,7 +295,7 @@ export const signageJourneySteps: JourneyStep[] = [
     step: "04",
     title: "Verificás qué se vio",
     description:
-      "Estado de entrega y proof-of-play para operación y marketing. Menos “¿salió la promo?” y menos pendrives por sucursal.",
+      "IT monitorea entrega; Marketing recibe evidencia (proof-of-play). Respuestas compartidas sin ir sucursal por sucursal.",
     image: "/images/platform/operaciones/operaciones-1.png",
     imageAlt: "Operaciones de flota con telemetría y entrega de contenido"
   }

@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
-import { SITE_NAME } from "@/lib/seo";
+import { BRAND_LOGO_SRC, SITE_NAME } from "@/lib/seo";
 
 /**
  * 1200×630. WhatsApp recorta a 1:1 desde el centro: el logo oficial ocupa
@@ -13,9 +13,10 @@ export const alt = `${SITE_NAME} — platform for IoT-over-IP`;
 
 export default async function OpenGraphImage() {
   const logo = await readFile(
-    join(process.cwd(), "public/images/brand/Wekoda-iot_over_ip.jpg")
+    join(process.cwd(), "public", BRAND_LOGO_SRC.replace(/^\//, ""))
   );
-  const logoSrc = `data:image/jpeg;base64,${logo.toString("base64")}`;
+  const mime = BRAND_LOGO_SRC.endsWith(".png") ? "image/png" : "image/jpeg";
+  const logoSrc = `data:${mime};base64,${logo.toString("base64")}`;
 
   return new ImageResponse(
     (

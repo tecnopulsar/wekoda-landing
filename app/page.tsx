@@ -25,20 +25,20 @@ import { SITE_NAME, absoluteUrl, getSiteUrl } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "WeKoda — Cartelería digital y plataforma IoT en tu red",
   description:
-    "Publicá campañas en toda la red sin otro silo de software. CMS Signage on‑prem, proof-of-play y flota IoT con Zero Trust: Marketing edita, IT aprueba y audita.",
+    "Cartelería pensada en dos equipos: Marketing arma campañas; IT opera la flota, publica y da soporte. Mismo panel, roles distintos, trabajo colaborativo on‑prem.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: getSiteUrl(),
     title: "WeKoda — Cartelería digital y plataforma IoT en tu red",
     description:
-      "Campañas, canales y players Pi/Tizen en tu LAN. Misma plataforma para luces, sensores e IR cuando el edificio lo necesite."
+      "Marketing: campañas y calendario. IT: operación, publicación y soporte a Marketing. Colaboración en un solo panel en tu LAN."
   },
   twitter: {
     card: "summary_large_image",
     title: "WeKoda — Cartelería digital y plataforma IoT en tu red",
     description:
-      "Campañas, canales y players Pi/Tizen en tu LAN. Misma plataforma para luces, sensores e IR cuando el edificio lo necesite.",
+      "Marketing: campañas y calendario. IT: operación, publicación y soporte a Marketing. Colaboración en un solo panel en tu LAN.",
     images: [absoluteUrl("/opengraph-image")]
   }
 };
@@ -55,9 +55,9 @@ const softwareSchema = {
     "Plataforma IoT-over-IP on‑prem con CMS Signage: campañas, canales, entrega y proof-of-play. Players Raspberry Pi y Samsung Tizen; flota, OTA y automatización bajo Zero Trust.",
   inLanguage: "es-AR",
   featureList: [
-    "CMS Signage con campañas, calendario y publicación controlada",
-    "Canales y targeting por grupo, etiqueta o player",
-    "Proof-of-play y estado de entrega de contenido",
+    "Flujo colaborativo Marketing (edición de campañas) e IT (publicación y operación)",
+    "CMS Signage con campañas, calendario y aprobación antes del aire",
+    "Soporte de IT a Marketing: flota, entrega, proof-of-play y diagnóstico",
     "Players HDMI commodity y Samsung Tizen SSSP",
     "Gateway on‑prem y multi-tenant con auditoría",
     "Verticales IoT: espacios, sensores e IR Repeater"
@@ -99,22 +99,22 @@ const securityItems = [
 ];
 
 const heroHighlights = [
-  { label: "CMS Signage", Icon: Megaphone },
-  { label: "On‑prem", Icon: Server },
-  { label: "Proof-of-play", Icon: ShieldCheck },
-  { label: "Multi-tenant", Icon: Building2 }
+  { label: "Marketing: campañas", Icon: Megaphone },
+  { label: "IT: operación y soporte", Icon: Server },
+  { label: "Publicación colaborativa", Icon: Building2 },
+  { label: "Proof-of-play", Icon: ShieldCheck }
 ];
 
 const personaItBullets = [
-  "Zero Trust: el panel nunca toca MQTT",
-  "Gateway en LAN, players Pi y Tizen commodity",
-  "OTA, diagnóstico y misma consola que el resto del edificio"
+  "Opera players, Gateway y red on‑prem con Zero Trust",
+  "Aprueba, publica o pausa lo que Marketing prepara — sin tickets por cada TV",
+  "OTA, diagnóstico, entrega y evidencia para responder al equipo comercial"
 ];
 
 const personaMarketingBullets = [
-  "Campañas con calendario, no inventario de TVs",
-  "Marketing edita; IT aprueba y publica",
-  "Evidencia de reproducción y prioridad de mensajes críticos"
+  "Armá campañas, subí piezas y definí calendario sin hablar en MAC ni MQTT",
+  "Pedís publicación a IT; el borrador no sale al HDMI hasta que operación lo valida",
+  "Sabés qué se reprodujo y cuándo, con menos idas a sucursal o pendrives"
 ];
 
 export default function LandingPage() {
@@ -136,19 +136,41 @@ export default function LandingPage() {
                   <span className="hero-ping absolute inline-flex size-full rounded-full bg-primary/70" />
                   <span className="relative inline-flex size-1.5 rounded-full bg-primary" />
                 </span>
-                Plataforma IoT-over-IP · Cartelería del edificio
+                CMS Signage · Marketing e IT
               </p>
               <h1 className="mt-4 text-balance text-4xl font-extrabold tracking-tight text-foreground md:text-5xl lg:text-6xl">
-                Publicá campañas en toda la red{" "}
+                Campañas para Marketing.{" "}
                 <span className="bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
-                  sin otro silo
-                </span>{" "}
-                de software.
+                  Operación y soporte para IT
+                </span>
+                , en una sola plataforma.
               </h1>
               <p className="mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
-                WeKoda une cartelería digital, flota y automatización en tu LAN. Marketing arma
-                campañas; IT aprueba, publica y audita. Zero Trust de punta a punta.
+                WeKoda está pensado para trabajar en dupla: Marketing concentra campañas,
+                contenido y calendario; IT mantiene la flota, publica con criterio de seguridad y
+                acompaña al equipo comercial con entrega y evidencia en pantalla.
               </p>
+
+              <div className="mt-5 grid max-w-2xl gap-3 sm:grid-cols-2">
+                <div className="rounded-xl border border-primary/20 bg-primary/5 px-4 py-3">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-primary">
+                    Para Marketing
+                  </p>
+                  <p className="mt-1 text-sm leading-snug text-muted-foreground">
+                    Campañas, biblioteca y fechas de vigencia — sin inventario de televisores ni
+                    otra herramienta aparte.
+                  </p>
+                </div>
+                <div className="rounded-xl border border-border/70 bg-background/80 px-4 py-3">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-foreground">
+                    Para IT
+                  </p>
+                  <p className="mt-1 text-sm leading-snug text-muted-foreground">
+                    Players, publicación, prioridades y diagnóstico — optimizando el soporte al
+                    personal de Marketing.
+                  </p>
+                </div>
+              </div>
 
               <ul className="mt-5 flex flex-wrap gap-2 md:mt-6">
                 {heroHighlights.map(({ label, Icon }) => (
@@ -209,7 +231,7 @@ export default function LandingPage() {
               </div>
 
               <p className="mt-5 text-xs uppercase tracking-[0.2em] text-muted-foreground/70">
-                Para IT, integradores y equipos de marketing que operan sucursales y edificios.
+                Colaboración real entre dirección comercial y sistemas — en sucursales y edificios.
               </p>
             </div>
 
@@ -265,9 +287,9 @@ export default function LandingPage() {
 
       <section className={`${sectionSnapCompact} border-y bg-muted/20`}>
         <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm font-medium text-muted-foreground">
-          <p>✔ On‑prem en tu LAN</p>
-          <p>✔ Marketing e IT con roles separados</p>
-          <p>✔ Players Pi y Samsung Tizen</p>
+          <p>✔ Marketing arma campañas</p>
+          <p>✔ IT publica y da soporte</p>
+          <p>✔ Un panel, trabajo en conjunto</p>
         </div>
       </section>
 
@@ -275,15 +297,16 @@ export default function LandingPage() {
         <div className="mx-auto w-full max-w-7xl">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-widest text-secondary">
-              Dos perfiles, un programa
+              Dualidad Marketing · IT
             </p>
             <h2 className="mt-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl lg:text-4xl">
-              IT implementa una vez. Marketing publica sin romper seguridad.
+              El mismo programa de cartelería, con tareas claras para cada equipo.
             </h2>
             <p className="mt-3 text-base text-muted-foreground md:text-lg">
-              IT implementa WeKoda una vez. Marketing trabaja en el mismo panel con permisos
-              acotados: arma campañas y sube piezas; IT aprueba, publica y mantiene la flota. Menos
-              tickets, menos pendrives, más control.
+              No es “Marketing contra IT”: es un flujo colaborativo. Marketing avanza en campañas y
+              piezas con permisos acotados; IT se enfoca en operatividad — red, players,
+              publicación, prioridades y soporte cuando hace falta salir al aire o corregir una
+              sucursal. Menos fricción, menos reprocesos, más previsibilidad para ambos.
             </p>
           </div>
           <div className="mt-8 grid gap-5 md:mt-10 lg:grid-cols-2 lg:gap-6">
@@ -292,10 +315,11 @@ export default function LandingPage() {
                 <span className="inline-flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
                   <Server className="size-5" aria-hidden />
                 </span>
-                <h3 className="text-lg font-semibold text-foreground">IT e integración</h3>
+                <h3 className="text-lg font-semibold text-foreground">IT — operación y soporte</h3>
               </div>
               <p className="mt-2 text-sm text-muted-foreground">
-                Una plataforma en tu LAN que IT opera y Marketing usa sin exponer el broker.
+                Infraestructura, flota y publicación: el brazo técnico que hace viable el trabajo de
+                Marketing, sin exponer MQTT ni multiplicar herramientas.
               </p>
               <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
                 {personaItBullets.map((item) => (
@@ -320,10 +344,11 @@ export default function LandingPage() {
                 <span className="inline-flex size-10 items-center justify-center rounded-xl bg-primary/15 text-primary">
                   <Megaphone className="size-5" aria-hidden />
                 </span>
-                <h3 className="text-lg font-semibold text-foreground">Marketing y operación</h3>
+                <h3 className="text-lg font-semibold text-foreground">Marketing — campañas</h3>
               </div>
               <p className="mt-2 text-sm text-muted-foreground">
-                Tu campaña, en las sucursales correctas, con inicio y fin — y prueba de que se vio.
+                El foco comercial: mensaje, calendario y sucursales correctas — con IT al lado para
+                publicar y demostrar que la pieza se vio.
               </p>
               <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
                 {personaMarketingBullets.map((item) => (
@@ -352,14 +377,14 @@ export default function LandingPage() {
         <div className="mx-auto w-full max-w-7xl">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-widest text-secondary">
-              Caso completo
+              Flujo colaborativo
             </p>
             <h2 className="mt-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl lg:text-4xl">
-              Del contenido a la evidencia en pantalla, en cuatro pasos.
+              Cuatro pasos que Marketing e IT recorren juntos.
             </h2>
             <p className="mt-3 text-base text-muted-foreground md:text-lg">
-              Contenido, canal, campaña y proof-of-play: el flujo que Marketing e IT comparten sin
-              otro CMS aislado en la nube.
+              Marketing aporta contenido y campaña; IT define canales, publica y confirma entrega.
+              Así se optimiza el trabajo en conjunto, de la biblioteca a la evidencia en pantalla.
             </p>
           </div>
           <div className="mt-8 md:mt-10">
@@ -401,7 +426,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className={`${sectionSnap} border-y border-border/60 bg-slate-50/80`}>
+      <section id="domotica-iot" className={`${sectionSnap} border-y border-border/60 bg-slate-50/80`}>
         <div className="mx-auto w-full max-w-7xl">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-widest text-secondary">

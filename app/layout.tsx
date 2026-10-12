@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { PublicNavbar } from "@/components/public-navbar";
 import { PublicFooter } from "@/components/public-footer";
 import {
+  BRAND_LOGO_SRC,
   ORGANIZATION,
   SITE_DESCRIPTION,
   SITE_KEYWORDS,
@@ -60,7 +61,7 @@ const organizationSchema = {
   name: SITE_NAME,
   legalName: ORGANIZATION.legalName,
   url: getSiteUrl(),
-  logo: absoluteUrl("/images/brand/Wekoda-iot_over_ip.jpg"),
+  logo: absoluteUrl(BRAND_LOGO_SRC),
   email: ORGANIZATION.email,
   telephone: ORGANIZATION.phone,
   address: {

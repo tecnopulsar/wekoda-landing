@@ -126,11 +126,12 @@ export default function DigitalSignagePage() {
               WeKoda Digital Signage
             </p>
             <h1 className="mt-4 text-balance text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl">
-              El programa del sitio, no otro CMS en la nube.
+              Cartelería pensada para Marketing e IT, trabajando en conjunto.
             </h1>
             <p className="mt-5 max-w-xl text-base text-slate-300 md:text-lg">
-              Cartelería digital on‑prem en la misma plataforma que ya opera tu flota: campañas,
-              canales, prioridad de HDMI, players Raspberry Pi y Samsung Tizen, con proof-of-play.
+              Marketing arma campañas y calendario; IT opera players, publica y da soporte con
+              entrega trazable y proof-of-play — on‑prem, en la misma plataforma que el resto del
+              edificio.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button
@@ -216,7 +217,7 @@ export default function DigitalSignagePage() {
               En el panel
             </p>
             <h2 className="mt-3 text-2xl font-bold tracking-tight md:text-3xl lg:text-4xl">
-              Una vertical de la plataforma IoT-over-IP, no un silo.
+              Una vertical de la plataforma IoT-over-IP, no un CMS aparte.
             </h2>
             <p className="mt-3 text-base text-muted-foreground md:text-lg">
               Flota, adopción, shadow y telemetría comparten el contrato Zero Trust. El dominio no

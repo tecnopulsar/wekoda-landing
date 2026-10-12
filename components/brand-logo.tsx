@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 type BrandLogoProps = {
   className?: string;
-  /** Altura visual del logo en el layout (el JPG trae mucho margen blanco). */
+  /** Altura visual del logo en el layout (PNG con fondo transparente). */
   priority?: boolean;
 };
 

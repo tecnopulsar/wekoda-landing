@@ -5,16 +5,19 @@ import { getAppLoginUrl, SHOW_APP_LOGIN } from "@/lib/constants";
 
 export function PublicNavbar() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md transition-all">
-      <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-8">
+    <header className="sticky top-0 z-50 w-full overflow-visible border-b border-border/40 bg-background/80 backdrop-blur-md transition-all">
+      <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between overflow-visible px-4 md:px-8">
         <Link
           href="/"
-          className="flex items-center transition-opacity hover:opacity-90"
+          className="relative z-[60] mr-1 flex h-16 w-[9.5rem] shrink-0 items-center transition-opacity hover:opacity-90 sm:w-[11rem] md:mr-2 md:w-[14rem] lg:w-[16rem]"
           data-action="nav-home"
           data-entity="brand"
           aria-label="WeKoda — inicio"
         >
-          <BrandLogo priority />
+          <BrandLogo
+            priority
+            className="relative h-[5.75rem] w-auto max-w-none md:h-[7.25rem] lg:h-[8.5rem]"
+          />
         </Link>
         <div className="flex items-center gap-2 md:gap-4">
           <Button
@@ -22,8 +25,12 @@ export function PublicNavbar() {
             asChild
             className="hidden text-base font-medium text-muted-foreground hover:text-primary md:inline-flex"
           >
-            <Link href="/soluciones/ir-repeater" data-action="nav-ir-repeater" data-entity="ir-repeater">
-              IR Repeater
+            <Link
+              href="/soluciones/digital-signage"
+              data-action="nav-cms-signage"
+              data-entity="digital-signage"
+            >
+              CMS Signage
             </Link>
           </Button>
           <Button
@@ -31,8 +38,8 @@ export function PublicNavbar() {
             asChild
             className="hidden text-base font-medium text-muted-foreground hover:text-primary md:inline-flex"
           >
-            <Link href="/soluciones/digital-signage" data-action="nav-digital-signage" data-entity="digital-signage">
-              Digital Signage
+            <Link href="/#domotica-iot" data-action="nav-domotics-iot" data-entity="platform">
+              Domótica IoT
             </Link>
           </Button>
           <Button
