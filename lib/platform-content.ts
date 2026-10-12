@@ -3,6 +3,7 @@ import {
   Activity,
   Building2,
   CalendarRange,
+  Cloud,
   Cpu,
   Gauge,
   Gamepad2,
@@ -354,60 +355,59 @@ export interface DeploymentPlan {
 }
 
 /**
- * Modalidades comerciales. Único lugar donde se definen importes: reemplazar
- * `price` y `priceNote` cuando los valores estén cerrados.
+ * Modalidades comerciales Cloud (USD). Único lugar donde se definen importes.
  */
 export const deploymentPlans: DeploymentPlan[] = [
   {
-    id: "gateway",
-    name: "Gateway WeKoda",
-    tagline: "La plataforma entera dentro de tu red",
-    price: "Consultar",
-    priceNote: "por gateway · incluye un año de soporte",
-    featured: true,
-    interestValue: "Gateway WeKoda (on-premise)",
+    id: "cloud-free",
+    name: "Free",
+    tagline: "Empezá en la nube sin costo",
+    price: "USD 0",
+    priceNote: "Modalidad Cloud · uso free",
+    featured: false,
+    interestValue: "Cloud Signage · plan Free (2 TVs)",
     features: [
-      "Appliance con backend, broker MQTT, base de datos y panel",
-      "Opera en LAN, sin depender de conexión a internet",
-      "Cartelería, flota IoT y automatización en el mismo tenant",
-      "Adopción y OTA de players Pi, Tizen y dispositivos edge",
-      "Ideal para plantas, hoteles, retail y edificios corporativos"
+      "Hasta 2 dispositivos TV Samsung línea profesional o Business",
+      "CMS Signage: campañas, canales y publicación con roles Marketing / IT",
+      "Ideal para probar el flujo completo antes de escalar",
+      "Misma plataforma WeKoda; sin tarjeta para el tier free",
+      "Upgrade a planes de pago cuando crezca la flota"
+    ],
+    Icon: Cloud
+  },
+  {
+    id: "cloud-growth",
+    name: "Growth",
+    tagline: "Cartelería Cloud para sucursales en crecimiento",
+    price: "USD 100 / mes",
+    priceNote: "o USD 1.000 pago único por 2 años",
+    featured: false,
+    interestValue: "Cloud Signage · plan 10 TVs (USD 100/mes)",
+    features: [
+      "Hasta 10 TVs Samsung profesional o Business",
+      "Facturación mensual o un solo cobro por 24 meses (USD)",
+      "Proof-of-play, entrega y operación de flota incluidos",
+      "Soporte para que IT acompañe al equipo de Marketing",
+      "Escalable al plan de 100 dispositivos"
+    ],
+    Icon: MonitorPlay
+  },
+  {
+    id: "cloud-scale",
+    name: "Scale",
+    tagline: "Red de pantallas con operación centralizada",
+    price: "USD 300 / mes",
+    priceNote: "o USD 3.000 pago único por 2 años",
+    featured: false,
+    interestValue: "Cloud Signage · plan 100 TVs (USD 300/mes)",
+    features: [
+      "Hasta 100 dispositivos TV Samsung profesional o Business",
+      "Mensual en USD o pago único por dos años con descuento",
+      "Multi-sucursal, campañas y prioridad de programa",
+      "Pensado para retail, cadenas y operación regional",
+      "Onboarding y acompañamiento según el alcance del contrato"
     ],
     Icon: Building2
-  },
-  {
-    id: "license",
-    name: "Licencia de instalación",
-    tagline: "Instalá WeKoda en tu propia infraestructura",
-    price: "Consultar",
-    priceNote: "licencia anual · según el tamaño de la flota",
-    featured: false,
-    interestValue: "Licencia de instalación",
-    features: [
-      "Despliegue en tu nube privada o datacenter",
-      "Multi-tenant completo con roles y auditoría",
-      "Acceso al catálogo de firmware por modelo de hardware",
-      "Acompañamiento de integración con tus sistemas",
-      "Nivel de servicio acordado según el caso"
-    ],
-    Icon: ShieldCheck
-  },
-  {
-    id: "kit",
-    name: "Kit de arranque",
-    tagline: "Probá cartelería o IoT con hardware listo",
-    price: "Consultar",
-    priceNote: "según players, gateway o kits edge",
-    featured: false,
-    interestValue: "Kit de arranque (hardware)",
-    features: [
-      "Player Raspberry Pi o dispositivo edge según el piloto",
-      "Opción IR Repeater para salas que aún usan control remoto",
-      "Alta en la plataforma y adopción asistida",
-      "Puesta en marcha de una campaña o flota reducida",
-      "Escalable al Gateway cuando el sitio crece"
-    ],
-    Icon: Monitor
   }
 ];
 
@@ -482,18 +482,24 @@ export const faqItems: FaqItem[] = [
       "OTA desde el panel, con catálogo por modelo de hardware e historial de intentos. Players Pi, Tizen y placas ESP comparten el mismo criterio de flota que el resto del edificio."
   },
   {
-    question: "¿Puedo instalar WeKoda en mi propia infraestructura?",
+    question: "¿Cuánto cuesta la cartelería Cloud?",
     answer:
-      "Sí, con licencia de instalación en tu nube o datacenter, multi-tenant, roles y auditoría. También ofrecemos Gateway appliance para arrancar rápido on‑prem."
+      "Plan Free: hasta 2 TVs Samsung profesional o Business (USD 0). Growth: hasta 10 TVs por USD 100/mes o USD 1.000 por dos años. Scale: hasta 100 TVs por USD 300/mes o USD 3.000 por dos años. Todos los precios en dólares estadounidenses."
+  },
+  {
+    question: "¿Puedo instalar WeKoda on‑prem en lugar de Cloud?",
+    answer:
+      "Sí. Los planes Cloud son para arrancar rápido; para Gateway en tu LAN o integraciones enterprise contactanos por el formulario."
   }
 ];
 
 /** Opciones del campo de interés en el formulario de contacto. */
 export const contactInterests = [
   "Cartelería / CMS",
+  "Cloud Signage · plan Free (2 TVs)",
+  "Cloud Signage · plan 10 TVs (USD 100/mes)",
+  "Cloud Signage · plan 100 TVs (USD 300/mes)",
   "Gateway WeKoda (on-premise)",
-  "Licencia de instalación",
-  "Kit de arranque (hardware)",
   "Integración a medida",
   "Solo quiero más información"
 ] as const;

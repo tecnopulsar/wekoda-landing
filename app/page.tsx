@@ -597,11 +597,11 @@ export default function LandingPage() {
               Cómo empezar
             </p>
             <h2 className="mt-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl lg:text-4xl">
-              Tres formas de tener WeKoda funcionando.
+              Tres planes Cloud para cartelería en Samsung TV.
             </h2>
             <p className="mt-3 text-base text-muted-foreground md:text-lg">
-              Gateway o licencia para la plataforma completa; kit de arranque para pilotos de
-              cartelería o IoT en una sucursal.
+              Precios en dólares estadounidenses (USD). Empezá free con dos pantallas; escalá a 10 o
+              100 dispositivos con facturación mensual o pago único por dos años.
             </p>
           </div>
 
@@ -610,8 +610,8 @@ export default function LandingPage() {
           </div>
 
           <p className="mt-8 text-center text-sm text-muted-foreground">
-            Preparamos una propuesta a medida según el tamaño de la flota y el alcance de la
-            integración.
+            Los importes referidos a TVs Samsung línea profesional o Business en modalidad Cloud.
+            Gateway on‑prem e integraciones a medida se cotizan por separado.
           </p>
         </div>
       </section>
