@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { ContactForm } from "@/components/ui-public/ContactForm";
 import { DevBlogInvitePopup } from "@/components/ui-public/DevBlogInvitePopup";
 import { ScrollToContactOnHash } from "@/components/ui-public/ScrollToContactOnHash";
-import { HeroNetworkVisual } from "@/components/ui-public/HeroNetworkVisual";
+import { HeroSignageVisual } from "@/components/ui-public/HeroSignageVisual";
 import { PlatformShowcase } from "@/components/ui-public/PlatformShowcase";
 import { SignageJourney } from "@/components/ui-public/SignageJourney";
 import { DeploymentPlans } from "@/components/ui-public/DeploymentPlans";
@@ -256,7 +256,7 @@ export default function LandingPage() {
               </p>
             </div>
 
-            <HeroNetworkVisual />
+            <HeroSignageVisual />
           </div>
 
           <div className="mt-6 md:mt-10">

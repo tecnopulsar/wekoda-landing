@@ -147,6 +147,10 @@
   animation: hero-glow-drift 7s ease-in-out infinite;
 }
 
+.hero-screen-slide {
+  transition: opacity 0.85s ease-in-out;
+}
+
 @keyframes showcase-panel-in {
   from {
     opacity: 0;
@@ -166,8 +170,10 @@
   .hero-ping,
   .hero-bar,
   .hero-log,
-  .hero-glow {
+  .hero-glow,
+  .hero-screen-slide {
     animation: none;
+    transition: none;
   }
 }
 

@@ -30,6 +30,22 @@ const nextConfig = {
         source: "/digital-signage",
         destination: "/soluciones/digital-signage",
         permanent: true
+      },
+      /** Evita 404 en rutas “adivinadas” por crawlers (p. ej. padre de /soluciones/*). */
+      {
+        source: "/soluciones",
+        destination: "/",
+        permanent: true
+      },
+      {
+        source: "/signage",
+        destination: "/soluciones/digital-signage",
+        permanent: true
+      },
+      {
+        source: "/domotica-iot",
+        destination: "/#domotica-iot",
+        permanent: true
       }
     ];
   }
