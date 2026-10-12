@@ -3,11 +3,13 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import {
   ArrowRight,
-  CalendarClock,
+  CalendarRange,
   HardDrive,
   MonitorPlay,
   ShieldCheck,
-  Clapperboard
+  Clapperboard,
+  Users,
+  Layers
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,9 +19,9 @@ import {
 } from "@/lib/digital-signage";
 import { SITE_NAME, absoluteUrl } from "@/lib/seo";
 
-const title = "WeKoda Digital Signage — cartelería sobre Raspberry Pi";
+const title = "WeKoda Digital Signage — CMS de cartelería en tu red";
 const description =
-  "Players HDMI en Raspberry Pi 4B gobernados desde WeKoda: biblioteca, playlists, agendas, cache local y proof-of-play, con el mismo modelo Zero Trust que el resto de la flota.";
+  "Campañas, canales y players Raspberry Pi y Samsung Tizen en tu LAN. Marketing edita; IT aprueba y publica. Proof-of-play y entrega trazable con Zero Trust.";
 
 export const metadata: Metadata = {
   title,
@@ -27,9 +29,10 @@ export const metadata: Metadata = {
   keywords: [
     "digital signage",
     "cartelería digital",
-    "Raspberry Pi signage",
+    "CMS on-prem",
     "proof of play",
-    "playlist IoT",
+    "Samsung Tizen signage",
+    "Raspberry Pi signage",
     "WeKoda signage"
   ],
   alternates: { canonical: DIGITAL_SIGNAGE_PATH },
@@ -56,23 +59,38 @@ export const metadata: Metadata = {
 const features = [
   {
     title: "Biblioteca y playlists",
-    body: "Videos, imágenes y URLs en una biblioteca de organización. Armá secuencias ordenadas y asignalas a cada player.",
+    body: "Videos e imágenes en la biblioteca de la organización. Playlists ordenadas, vigencia por pieza y asignación a canales.",
     Icon: Clapperboard
   },
   {
-    title: "Cache local en el player",
-    body: "La Pi precarga contenido en disco. VLC arranca sin esperar la red: el primer frame no se bloquea por una descarga.",
-    Icon: HardDrive
+    title: "Campañas con calendario",
+    body: "Planificador para marketing: nombre, fechas, validación y publicar o pausar sin tocar cada televisor.",
+    Icon: CalendarRange
   },
   {
-    title: "Agendas por dispositivo",
-    body: "Programá qué se reproduce y cuándo, por player. Ideal para sucursales, lobbies y cartelería de turno.",
-    Icon: CalendarClock
+    title: "Canales y targeting",
+    body: "Un mensaje para grupo, etiqueta o lista de players. Ideal para sucursales, lobbies y zonas del edificio.",
+    Icon: Layers
   },
   {
-    title: "Proof-of-play",
-    body: "Auditoría de lo que realmente se emitió. Demostrá reproducción ante operaciones, marketing o el cliente final.",
+    title: "Marketing vs IT",
+    body: "Marketing edita campañas y sube material; operación aprueba y publica. Un borrador no llega al HDMI.",
+    Icon: Users
+  },
+  {
+    title: "Players Pi y Tizen",
+    body: "Raspberry Pi 4B con caché local y Samsung Tizen SSSP en la misma vertical CMS. Cualquier TV con HDMI.",
+    Icon: MonitorPlay
+  },
+  {
+    title: "Entrega y proof-of-play",
+    body: "Estado de entrega persistido y evidencia de reproducción para operación, marketing y auditoría.",
     Icon: ShieldCheck
+  },
+  {
+    title: "Offline en el player",
+    body: "La Pi precarga contenido en disco. El sitio sigue mostrando cartelería si cae internet en el Gateway.",
+    Icon: HardDrive
   }
 ] as const;
 
@@ -85,7 +103,7 @@ const productSchema = {
   image: absoluteUrl(digitalSignageImages.app),
   url: absoluteUrl(DIGITAL_SIGNAGE_PATH),
   applicationCategory: "BusinessApplication",
-  operatingSystem: "Raspberry Pi OS Lite, Web"
+  operatingSystem: "Raspberry Pi OS Lite, Samsung Tizen, Web"
 };
 
 export default function DigitalSignagePage() {
@@ -108,11 +126,11 @@ export default function DigitalSignagePage() {
               WeKoda Digital Signage
             </p>
             <h1 className="mt-4 text-balance text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl">
-              Cartelería digital gobernada como infraestructura.
+              El programa del sitio, no otro CMS en la nube.
             </h1>
             <p className="mt-5 max-w-xl text-base text-slate-300 md:text-lg">
-              Players HDMI sobre Raspberry Pi 4B, administrados desde el mismo panel que el resto de
-              la flota: contenido, playlists, agendas y prueba de reproducción.
+              Cartelería digital on‑prem en la misma plataforma que ya opera tu flota: campañas,
+              canales, prioridad de HDMI, players Raspberry Pi y Samsung Tizen, con proof-of-play.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button
@@ -141,7 +159,7 @@ export default function DigitalSignagePage() {
               </Button>
             </div>
             <p className="mt-5 font-mono text-xs text-slate-500">
-              Hardware: rpi4b-signage-player-v1 · agente Node.js + VLC
+              Players: rpi4b-signage-player-v1 · Samsung Tizen SSSP · Zero Trust MQTT v2
             </p>
           </div>
 
@@ -149,7 +167,7 @@ export default function DigitalSignagePage() {
             <div className="relative aspect-[16/10] w-full">
               <Image
                 src={digitalSignageImages.app}
-                alt="App Digital Signage en el panel WeKoda con biblioteca, playlists y agendas"
+                alt="App Digital Signage en el panel WeKoda con biblioteca, campañas y canales"
                 fill
                 className="object-contain object-top"
                 sizes="(min-width: 1024px) 50vw, 100vw"
@@ -167,10 +185,14 @@ export default function DigitalSignagePage() {
               Qué incluye
             </p>
             <h2 className="mt-3 text-2xl font-bold tracking-tight md:text-3xl lg:text-4xl">
-              De la biblioteca al HDMI, sin salirte de WeKoda.
+              De la campaña al HDMI, con roles claros.
             </h2>
+            <p className="mt-3 text-base text-muted-foreground">
+              No vendemos “otro MagicInfo” ni un SaaS global. WeKoda resuelve qué gana en el HDMI,
+              cuándo sale al aire y con qué evidencia — en tu LAN.
+            </p>
           </div>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 md:mt-10 md:gap-5">
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 md:mt-10 md:gap-5 lg:grid-cols-3">
             {features.map(({ title, body, Icon }) => (
               <article
                 key={title}
@@ -194,11 +216,11 @@ export default function DigitalSignagePage() {
               En el panel
             </p>
             <h2 className="mt-3 text-2xl font-bold tracking-tight md:text-3xl lg:text-4xl">
-              Una vertical más de la plataforma, no un CMS aislado.
+              Una vertical de la plataforma IoT-over-IP, no un silo.
             </h2>
             <p className="mt-3 text-base text-muted-foreground md:text-lg">
-              Flota, adopción, shadow y telemetría comparten el mismo contrato Zero Trust. El
-              navegador nunca toca el broker; el player solo habla MQTT con el backend.
+              Flota, adopción, shadow y telemetría comparten el contrato Zero Trust. El dominio no
+              conoce MQTT; el player reproduce archivos; el servidor decide prioridades y entrega.
             </p>
           </div>
           <div className="relative mt-8 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-border/70 bg-white shadow-lg md:mt-10">
@@ -219,8 +241,8 @@ export default function DigitalSignagePage() {
             ¿Querés probar Digital Signage en tu red?
           </h2>
           <p className="mt-3 text-sm text-slate-300 md:text-base">
-            Contanos el sitio y la cantidad de pantallas. Te armamos una demo con player Pi y el
-            panel de producción.
+            Contanos el sitio y la cantidad de pantallas. Armamos una demo con players y el panel en
+            tu LAN o Gateway.
           </p>
           <Button
             asChild
@@ -239,7 +261,7 @@ export default function DigitalSignagePage() {
             <Link
               href="/devblog"
               className="text-sm text-slate-400 underline-offset-4 hover:text-primary hover:underline"
-              data-action="nav-devblog-from-signage"
+              data-action="read-signage-article"
               data-entity="devblog"
             >
               Leer los posts técnicos de Signage en el DevBlog

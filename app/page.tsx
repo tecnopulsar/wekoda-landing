@@ -1,36 +1,44 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ShieldCheck, CheckCircle2, ArrowRight, ChevronDown, Cpu, Network, Radio } from "lucide-react";
+import {
+  ShieldCheck,
+  CheckCircle2,
+  ArrowRight,
+  ChevronDown,
+  Building2,
+  Megaphone,
+  Server
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ContactForm } from "@/components/ui-public/ContactForm";
 import { DevBlogInvitePopup } from "@/components/ui-public/DevBlogInvitePopup";
 import { ScrollToContactOnHash } from "@/components/ui-public/ScrollToContactOnHash";
 import { HeroNetworkVisual } from "@/components/ui-public/HeroNetworkVisual";
 import { PlatformShowcase } from "@/components/ui-public/PlatformShowcase";
-import { IrJourney } from "@/components/ui-public/IrJourney";
+import { SignageJourney } from "@/components/ui-public/SignageJourney";
 import { DeploymentPlans } from "@/components/ui-public/DeploymentPlans";
 import { verticalApps, faqItems, heroPreviewCards } from "@/lib/platform-content";
 import { getAppLoginUrl, SHOW_APP_LOGIN } from "@/lib/constants";
 import { SITE_NAME, absoluteUrl, getSiteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "WeKoda — Plataforma IoT para gestionar y automatizar dispositivos",
+  title: "WeKoda — Cartelería digital y plataforma IoT en tu red",
   description:
-    "Gestioná tu flota de dispositivos IoT desde un solo panel: inventario en vivo, actualización OTA remota, control por espacios, mandos infrarrojos sobre IP y seguridad Zero Trust.",
+    "Publicá campañas en toda la red sin otro silo de software. CMS Signage on‑prem, proof-of-play y flota IoT con Zero Trust: Marketing edita, IT aprueba y audita.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: getSiteUrl(),
-    title: "WeKoda — Plataforma IoT para gestionar y automatizar dispositivos",
+    title: "WeKoda — Cartelería digital y plataforma IoT en tu red",
     description:
-      "Inventario de flota, OTA remoto, control por espacios y automatización sobre un modelo de seguridad Zero Trust."
+      "Campañas, canales y players Pi/Tizen en tu LAN. Misma plataforma para luces, sensores e IR cuando el edificio lo necesite."
   },
   twitter: {
     card: "summary_large_image",
-    title: "WeKoda — Plataforma IoT para gestionar y automatizar dispositivos",
+    title: "WeKoda — Cartelería digital y plataforma IoT en tu red",
     description:
-      "Inventario de flota, OTA remoto, control por espacios y automatización sobre un modelo de seguridad Zero Trust.",
+      "Campañas, canales y players Pi/Tizen en tu LAN. Misma plataforma para luces, sensores e IR cuando el edificio lo necesite.",
     images: [absoluteUrl("/opengraph-image")]
   }
 };
@@ -44,15 +52,15 @@ const softwareSchema = {
   url: getSiteUrl(),
   image: absoluteUrl("/opengraph-image"),
   description:
-    "Plataforma de gestión de dispositivos IoT con inventario de flota, actualización OTA remota, control por espacios, automatización por agendas y seguridad Zero Trust.",
+    "Plataforma IoT-over-IP on‑prem con CMS Signage: campañas, canales, entrega y proof-of-play. Players Raspberry Pi y Samsung Tizen; flota, OTA y automatización bajo Zero Trust.",
   inLanguage: "es-AR",
   featureList: [
-    "Inventario de flota con capacidades autodescubiertas",
-    "Actualización de firmware OTA con historial",
-    "Control por espacios y escenas",
-    "Mandos virtuales infrarrojos sobre IP",
-    "Automatización por agendas y reglas",
-    "Multi-tenant con roles y auditoría"
+    "CMS Signage con campañas, calendario y publicación controlada",
+    "Canales y targeting por grupo, etiqueta o player",
+    "Proof-of-play y estado de entrega de contenido",
+    "Players HDMI commodity y Samsung Tizen SSSP",
+    "Gateway on‑prem y multi-tenant con auditoría",
+    "Verticales IoT: espacios, sensores e IR Repeater"
   ]
 };
 
@@ -91,9 +99,22 @@ const securityItems = [
 ];
 
 const heroHighlights = [
-  { label: "Protocolo MQTT sobre TLS", Icon: Network },
-  { label: "Firmware ESP32 y edge Linux", Icon: Cpu },
-  { label: "Telemetría en tiempo real", Icon: Radio }
+  { label: "CMS Signage", Icon: Megaphone },
+  { label: "On‑prem", Icon: Server },
+  { label: "Proof-of-play", Icon: ShieldCheck },
+  { label: "Multi-tenant", Icon: Building2 }
+];
+
+const personaItBullets = [
+  "Zero Trust: el panel nunca toca MQTT",
+  "Gateway en LAN, players Pi y Tizen commodity",
+  "OTA, diagnóstico y misma consola que el resto del edificio"
+];
+
+const personaMarketingBullets = [
+  "Campañas con calendario, no inventario de TVs",
+  "Marketing edita; IT aprueba y publica",
+  "Evidencia de reproducción y prioridad de mensajes críticos"
 ];
 
 export default function LandingPage() {
@@ -115,19 +136,18 @@ export default function LandingPage() {
                   <span className="hero-ping absolute inline-flex size-full rounded-full bg-primary/70" />
                   <span className="relative inline-flex size-1.5 rounded-full bg-primary" />
                 </span>
-                Plataforma IoT over IP
+                Plataforma IoT-over-IP · Cartelería del edificio
               </p>
               <h1 className="mt-4 text-balance text-4xl font-extrabold tracking-tight text-foreground md:text-5xl lg:text-6xl">
-                Operá dispositivos como{" "}
+                Publicá campañas en toda la red{" "}
                 <span className="bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
-                  infraestructura
-                </span>
-                , no como hardware.
+                  sin otro silo
+                </span>{" "}
+                de software.
               </h1>
               <p className="mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
-                Cada sensor, actuador o gateway se convierte en un nodo direccionable sobre IP.
-                Gestioná, asegurá y escalá tu flota con control total y un modelo de seguridad Zero
-                Trust.
+                WeKoda une cartelería digital, flota y automatización en tu LAN. Marketing arma
+                campañas; IT aprueba, publica y audita. Zero Trust de punta a punta.
               </p>
 
               <ul className="mt-5 flex flex-wrap gap-2 md:mt-6">
@@ -178,14 +198,18 @@ export default function LandingPage() {
                   size="lg"
                   className="border-primary/20 text-primary hover:bg-primary/10"
                 >
-                  <Link href="#plataforma" data-action="view-platform" data-entity="platform">
-                    Ver la plataforma
+                  <Link
+                    href="/soluciones/digital-signage"
+                    data-action="open-signage-solution"
+                    data-entity="digital-signage"
+                  >
+                    Ver cartelería
                   </Link>
                 </Button>
               </div>
 
               <p className="mt-5 text-xs uppercase tracking-[0.2em] text-muted-foreground/70">
-                Para equipos técnicos, integradores y empresas que operan infraestructura en el edge.
+                Para IT, integradores y equipos de marketing que operan sucursales y edificios.
               </p>
             </div>
 
@@ -198,12 +222,12 @@ export default function LandingPage() {
                 Capturas reales del panel
               </p>
               <Link
-                href="#plataforma"
-                data-action="view-platform-previews"
-                data-entity="platform"
+                href="#carteleria"
+                data-action="view-signage-previews"
+                data-entity="digital-signage"
                 className="hidden text-xs font-medium text-primary hover:underline sm:inline"
               >
-                Ver más pantallas
+                Ver el recorrido de campaña
               </Link>
             </div>
             <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
@@ -211,8 +235,8 @@ export default function LandingPage() {
                 <Link
                   key={id}
                   href="#plataforma"
-                  data-action="open-platform-preview"
-                  data-entity="platform-section"
+                  data-action="open-signage-preview"
+                  data-entity="digital-signage"
                   data-row-id={id}
                   className="group overflow-hidden rounded-2xl border border-border/70 bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg"
                 >
@@ -241,9 +265,118 @@ export default function LandingPage() {
 
       <section className={`${sectionSnapCompact} border-y bg-muted/20`}>
         <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm font-medium text-muted-foreground">
-          <p>✔ Diseñado para producción</p>
-          <p>✔ Arquitectura probada en campo</p>
-          <p>✔ Multi-tenant listo para escalar</p>
+          <p>✔ On‑prem en tu LAN</p>
+          <p>✔ Marketing e IT con roles separados</p>
+          <p>✔ Players Pi y Samsung Tizen</p>
+        </div>
+      </section>
+
+      <section id="it-marketing" className={`${sectionSnap} border-b border-border/60 bg-white`}>
+        <div className="mx-auto w-full max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-widest text-secondary">
+              Dos perfiles, un programa
+            </p>
+            <h2 className="mt-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl lg:text-4xl">
+              IT implementa una vez. Marketing publica sin romper seguridad.
+            </h2>
+            <p className="mt-3 text-base text-muted-foreground md:text-lg">
+              IT implementa WeKoda una vez. Marketing trabaja en el mismo panel con permisos
+              acotados: arma campañas y sube piezas; IT aprueba, publica y mantiene la flota. Menos
+              tickets, menos pendrives, más control.
+            </p>
+          </div>
+          <div className="mt-8 grid gap-5 md:mt-10 lg:grid-cols-2 lg:gap-6">
+            <article className="rounded-2xl border border-border/70 bg-slate-50/80 p-6 shadow-sm">
+              <div className="flex items-center gap-3">
+                <span className="inline-flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <Server className="size-5" aria-hidden />
+                </span>
+                <h3 className="text-lg font-semibold text-foreground">IT e integración</h3>
+              </div>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Una plataforma en tu LAN que IT opera y Marketing usa sin exponer el broker.
+              </p>
+              <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
+                {personaItBullets.map((item) => (
+                  <li key={item} className="flex gap-2">
+                    <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <Button
+                asChild
+                variant="outline"
+                className="mt-5 rounded-full border-primary/30 text-primary"
+              >
+                <Link href="#contacto" data-action="select-persona-it" data-entity="lead">
+                  Demo técnica
+                </Link>
+              </Button>
+            </article>
+            <article className="rounded-2xl border border-primary/25 bg-primary/5 p-6 shadow-sm">
+              <div className="flex items-center gap-3">
+                <span className="inline-flex size-10 items-center justify-center rounded-xl bg-primary/15 text-primary">
+                  <Megaphone className="size-5" aria-hidden />
+                </span>
+                <h3 className="text-lg font-semibold text-foreground">Marketing y operación</h3>
+              </div>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Tu campaña, en las sucursales correctas, con inicio y fin — y prueba de que se vio.
+              </p>
+              <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
+                {personaMarketingBullets.map((item) => (
+                  <li key={item} className="flex gap-2">
+                    <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <Button asChild className="mt-5 rounded-full">
+                <Link
+                  href="/soluciones/digital-signage"
+                  data-action="select-persona-marketing"
+                  data-entity="digital-signage"
+                >
+                  Ver cómo opera una campaña
+                  <ArrowRight className="size-4" aria-hidden />
+                </Link>
+              </Button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="carteleria" className={`${sectionSnap} bg-slate-50/80`}>
+        <div className="mx-auto w-full max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-widest text-secondary">
+              Caso completo
+            </p>
+            <h2 className="mt-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl lg:text-4xl">
+              Del contenido a la evidencia en pantalla, en cuatro pasos.
+            </h2>
+            <p className="mt-3 text-base text-muted-foreground md:text-lg">
+              Contenido, canal, campaña y proof-of-play: el flujo que Marketing e IT comparten sin
+              otro CMS aislado en la nube.
+            </p>
+          </div>
+          <div className="mt-8 md:mt-10">
+            <SignageJourney />
+          </div>
+          <div className="mt-8 text-center">
+            <Button asChild variant="outline" className="rounded-full border-primary/30 text-primary">
+              <Link
+                href="/soluciones/digital-signage"
+                data-action="open-signage-solution"
+                data-entity="digital-signage"
+              >
+                Explorar solución Digital Signage
+                <ArrowRight className="size-4" aria-hidden />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -254,11 +387,11 @@ export default function LandingPage() {
               Así se ve por dentro
             </p>
             <h2 className="mt-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl lg:text-4xl">
-              No es una maqueta: es el panel que usamos todos los días.
+              Cartelería, flota y gobierno en el mismo panel.
             </h2>
             <p className="mt-3 text-base text-muted-foreground md:text-lg">
-              Recorré las pantallas reales de la plataforma y mirá cómo se administra una flota de
-              principio a fin.
+              Capturas reales: campañas y canales primero; después dispositivos, operaciones,
+              espacios y el resto de verticales IoT.
             </p>
           </div>
 
@@ -284,7 +417,7 @@ export default function LandingPage() {
           </div>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 md:mt-10 lg:grid-cols-3">
-            {verticalApps.map(({ id, name, hardware, description, available, href, Icon }) => {
+            {verticalApps.map(({ id, name, hardware, description, available, featured, href, Icon }) => {
               const card = (
                 <>
                   <div className="flex items-start justify-between gap-3">
@@ -313,8 +446,12 @@ export default function LandingPage() {
                 </>
               );
 
-              const cardClass =
-                "flex h-full flex-col rounded-2xl border border-border/70 bg-card p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md";
+              const cardClass = [
+                "flex h-full flex-col rounded-2xl border bg-card p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md",
+                featured
+                  ? "border-primary/40 bg-primary/[0.03] ring-1 ring-primary/20"
+                  : "border-border/70"
+              ].join(" ");
 
               return href ? (
                 <Link
@@ -337,36 +474,30 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className={sectionSnap}>
-        <div className="mx-auto w-full max-w-7xl">
-          <div className="max-w-3xl">
+      <section className={`${sectionSnap} border-t border-border/60 bg-white`}>
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+          <div className="max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-widest text-secondary">
-              Caso completo
+              También en el edificio
             </p>
-            <h2 className="mt-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl lg:text-4xl">
-              Del control remoto a la automatización, en cuatro pasos.
+            <h2 className="mt-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+              IR Repeater para salas que aún usan control remoto.
             </h2>
-            <p className="mt-3 text-base text-muted-foreground md:text-lg">
-              Así se integra un televisor, un aire acondicionado o un decodificador que solo entiende
-              infrarrojo, y termina respondiendo a una agenda.
+            <p className="mt-3 text-base text-muted-foreground">
+              Captura, biblioteca, mando virtual y automatización con luces y agendas. Vertical
+              diferenciadora en oficinas y hoteles; convive con Signage en la misma plataforma.
             </p>
           </div>
-
-          <div className="mt-8 md:mt-10">
-            <IrJourney />
-          </div>
-          <div className="mt-8 text-center">
-            <Button asChild variant="outline" className="rounded-full border-primary/30 text-primary">
-              <Link
-                href="/soluciones/ir-repeater"
-                data-action="open-ir-repeater-page"
-                data-entity="ir-repeater"
-              >
-                Ver WeKoda IR Repeater
-                <ArrowRight className="size-4" aria-hidden />
-              </Link>
-            </Button>
-          </div>
+          <Button asChild variant="outline" className="shrink-0 rounded-full border-primary/30 text-primary">
+            <Link
+              href="/soluciones/ir-repeater"
+              data-action="open-ir-repeater-page"
+              data-entity="ir-repeater"
+            >
+              Ver WeKoda IR Repeater
+              <ArrowRight className="size-4" aria-hidden />
+            </Link>
+          </Button>
         </div>
       </section>
 
@@ -444,8 +575,8 @@ export default function LandingPage() {
               Tres formas de tener WeKoda funcionando.
             </h2>
             <p className="mt-3 text-base text-muted-foreground md:text-lg">
-              Desde un kit para probar en una sala hasta la licencia para desplegar la plataforma en
-              tu propia infraestructura.
+              Gateway o licencia para la plataforma completa; kit de arranque para pilotos de
+              cartelería o IoT en una sucursal.
             </p>
           </div>
 

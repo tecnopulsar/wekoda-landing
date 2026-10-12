@@ -1,10 +1,18 @@
-/** Base URL of the product app (dashboard). No trailing slash. */
+/**
+ * Base URL of the product admin (`iot-over-ip` full). No trailing slash.
+ * Set `NEXT_PUBLIC_APP_ORIGIN` only when that admin is deployed (not the Lite repo).
+ * `https://app.wekoda.lat` has no DNS — do not use as default.
+ */
 export function getAppOrigin(): string {
-  return (process.env.NEXT_PUBLIC_APP_ORIGIN ?? "https://app.wekoda.lat").replace(/\/$/, "");
+  const configured = process.env.NEXT_PUBLIC_APP_ORIGIN?.trim();
+  if (!configured) return "";
+  return configured.replace(/\/$/, "");
 }
 
 export function getAppLoginUrl(): string {
-  return `${getAppOrigin()}/settings/login`;
+  const origin = getAppOrigin();
+  if (!origin) return "/#contacto";
+  return `${origin}/settings/login`;
 }
 
 /**

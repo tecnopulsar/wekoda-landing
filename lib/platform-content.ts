@@ -2,11 +2,14 @@ import type { LucideIcon } from "lucide-react";
 import {
   Activity,
   Building2,
+  CalendarRange,
   Cpu,
   Gauge,
   Gamepad2,
+  Layers,
   Lightbulb,
   Monitor,
+  MonitorPlay,
   Radio,
   Repeat2,
   ScrollText,
@@ -15,6 +18,8 @@ import {
   ToggleLeft,
   Zap
 } from "lucide-react";
+
+const signagePanelImage = "/images/platform/apps/digital-signage.png";
 
 export interface ShowcaseSection {
   id: string;
@@ -43,6 +48,51 @@ export const showcaseSections: ShowcaseSection[] = [
       "Cada bloque abre la flota ya filtrada por ese estado"
     ],
     Icon: Gauge
+  },
+  {
+    id: "signage-campaigns",
+    label: "Campañas",
+    title: "Planificá promociones con calendario y publicación controlada",
+    description:
+      "Marketing arma campañas con fecha de inicio y fin; operación valida, publica o pausa sin tocar cada televisor a mano.",
+    image: signagePanelImage,
+    imageAlt: "Panel Digital Signage con campañas y biblioteca de contenido",
+    highlights: [
+      "Nombre, vigencia y estado visibles para todo el equipo",
+      "Validación antes de salir al aire — nada en borrador llega al HDMI",
+      "Misma organización y permisos que el resto de la plataforma"
+    ],
+    Icon: CalendarRange
+  },
+  {
+    id: "signage-channels",
+    label: "Canales",
+    title: "Un mensaje para el grupo correcto, no catorce TVs una por una",
+    description:
+      "Canales y targeting por grupo, etiqueta o lista de players. Ideal para sucursales, lobbies y zonas del edificio.",
+    image: signagePanelImage,
+    imageAlt: "Gestión de canales y playlists de cartelería digital",
+    highlights: [
+      "Biblioteca de video, imagen y piezas aprobadas por organización",
+      "Playlists ordenadas y vigencia por contenido",
+      "Entrega trazable: sabés si el player recibió el programa"
+    ],
+    Icon: Layers
+  },
+  {
+    id: "signage-players",
+    label: "Players",
+    title: "Raspberry Pi y Samsung Tizen en la misma flota",
+    description:
+      "Cada pantalla es un dispositivo más: shadow, telemetría, OTA y diagnóstico. La TV puede ser cualquier marca con HDMI.",
+    image: signagePanelImage,
+    imageAlt: "Players de cartelería administrados desde WeKoda",
+    highlights: [
+      "Player Raspberry Pi 4B con caché local si cae internet",
+      "SKU Samsung Tizen SSSP en la misma vertical CMS",
+      "Prioridad de programa: emergencia e IoT pueden pisar la promo vigente"
+    ],
+    Icon: MonitorPlay
   },
   {
     id: "devices",
@@ -127,12 +177,24 @@ export interface VerticalApp {
   hardware: string;
   description: string;
   available: boolean;
+  featured?: boolean;
   href?: string;
   Icon: LucideIcon;
 }
 
 /** Verticales integradas hoy en la plataforma (pantalla Apps del panel). */
 export const verticalApps: VerticalApp[] = [
+  {
+    id: "digital-signage",
+    name: "Digital Signage",
+    hardware: "rpi4b-signage-player-v1 · Samsung Tizen SSSP",
+    description:
+      "CMS de cartelería en tu LAN: campañas, canales, entrega y proof-of-play. Marketing edita; IT aprueba y publica.",
+    available: true,
+    featured: true,
+    href: "/soluciones/digital-signage",
+    Icon: Monitor
+  },
   {
     id: "ir-repeater",
     name: "IR Repeater",
@@ -188,16 +250,6 @@ export const verticalApps: VerticalApp[] = [
     available: false,
     Icon: Radio
   },
-  {
-    id: "digital-signage",
-    name: "Digital Signage",
-    hardware: "rpi4b-signage-player-v1",
-    description:
-      "Reproductor de cartelería digital sobre Raspberry Pi, administrado desde la misma consola que el resto de la flota.",
-    available: true,
-    href: "/soluciones/digital-signage",
-    Icon: Monitor
-  }
 ];
 
 export interface JourneyStep {
@@ -208,6 +260,46 @@ export interface JourneyStep {
   image: string;
   imageAlt: string;
 }
+
+/** Recorrido Signage: del contenido a la evidencia en pantalla. */
+export const signageJourneySteps: JourneyStep[] = [
+  {
+    id: "content",
+    step: "01",
+    title: "Subís el contenido",
+    description:
+      "Videos e imágenes quedan en la biblioteca de la organización, con vigencia y permisos. Marketing trabaja sin inventario de TVs.",
+    image: signagePanelImage,
+    imageAlt: "Biblioteca de contenido Digital Signage en WeKoda"
+  },
+  {
+    id: "channel",
+    step: "02",
+    title: "Definís canal y audiencia",
+    description:
+      "Armás playlists y las asignás a grupos, etiquetas o players. Un solo cambio actualiza todas las sucursales del grupo.",
+    image: signagePanelImage,
+    imageAlt: "Canales y playlists de cartelería digital"
+  },
+  {
+    id: "campaign",
+    step: "03",
+    title: "Planificás la campaña",
+    description:
+      "Nombre, fechas y validación antes de publicar. IT aprueba y pone en pausa cuando hace falta; el borrador no llega al HDMI.",
+    image: signagePanelImage,
+    imageAlt: "Planificador de campañas de cartelería"
+  },
+  {
+    id: "proof",
+    step: "04",
+    title: "Verificás qué se vio",
+    description:
+      "Estado de entrega y proof-of-play para operación y marketing. Menos “¿salió la promo?” y menos pendrives por sucursal.",
+    image: "/images/platform/operaciones/operaciones-1.png",
+    imageAlt: "Operaciones de flota con telemetría y entrega de contenido"
+  }
+];
 
 /** Recorrido de una señal infrarroja: del control físico a la automatización. */
 export const irJourneySteps: JourneyStep[] = [
@@ -267,23 +359,6 @@ export interface DeploymentPlan {
  */
 export const deploymentPlans: DeploymentPlan[] = [
   {
-    id: "kit",
-    name: "Kit IR Repeater",
-    tagline: "Empezá con hardware listo para enchufar",
-    price: "Consultar",
-    priceNote: "precio por kit según cantidad",
-    featured: false,
-    interestValue: "Kit IR Repeater",
-    features: [
-      "Dispositivo IR Repeater con Ethernet cableado",
-      "Emisor y receptor infrarrojo, y fuente de alimentación",
-      "Alta en la plataforma y adopción asistida",
-      "Mando virtual precargado desde el catálogo de equipos",
-      "Acompañamiento en la puesta en marcha"
-    ],
-    Icon: Repeat2
-  },
-  {
     id: "gateway",
     name: "Gateway WeKoda",
     tagline: "La plataforma entera dentro de tu red",
@@ -294,9 +369,9 @@ export const deploymentPlans: DeploymentPlan[] = [
     features: [
       "Appliance con backend, broker MQTT, base de datos y panel",
       "Opera en LAN, sin depender de conexión a internet",
-      "Adopción y OTA de toda la flota del sitio",
-      "Actualizaciones publicadas y procedimiento de respaldo",
-      "Ideal para plantas, hoteles y edificios corporativos"
+      "Cartelería, flota IoT y automatización en el mismo tenant",
+      "Adopción y OTA de players Pi, Tizen y dispositivos edge",
+      "Ideal para plantas, hoteles, retail y edificios corporativos"
     ],
     Icon: Building2
   },
@@ -316,6 +391,23 @@ export const deploymentPlans: DeploymentPlan[] = [
       "Nivel de servicio acordado según el caso"
     ],
     Icon: ShieldCheck
+  },
+  {
+    id: "kit",
+    name: "Kit de arranque",
+    tagline: "Probá cartelería o IoT con hardware listo",
+    price: "Consultar",
+    priceNote: "según players, gateway o kits edge",
+    featured: false,
+    interestValue: "Kit de arranque (hardware)",
+    features: [
+      "Player Raspberry Pi o dispositivo edge según el piloto",
+      "Opción IR Repeater para salas que aún usan control remoto",
+      "Alta en la plataforma y adopción asistida",
+      "Puesta en marcha de una campaña o flota reducida",
+      "Escalable al Gateway cuando el sitio crece"
+    ],
+    Icon: Monitor
   }
 ];
 
@@ -335,73 +427,73 @@ export interface HeroPreviewCard {
 
 export const heroPreviewCards: HeroPreviewCard[] = [
   {
-    id: "overview",
-    label: "Resumen",
-    caption: "Estado de la flota en un vistazo",
-    image: "/images/platform/overview/resumen-2.png",
-    imageAlt: "Panel de resumen con el estado de la flota"
+    id: "signage-campaigns",
+    label: "Campañas",
+    caption: "Calendario, validación y publicación",
+    image: signagePanelImage,
+    imageAlt: "Campañas de cartelería digital en el panel WeKoda"
   },
   {
-    id: "operations",
-    label: "Operaciones",
-    caption: "Salud, OTA y acciones remotas",
-    image: "/images/platform/operaciones/operaciones-1.png",
-    imageAlt: "Pantalla de operaciones con telemetría y actualización OTA"
+    id: "signage-channels",
+    label: "Canales",
+    caption: "Playlists por grupo o sucursal",
+    image: signagePanelImage,
+    imageAlt: "Canales y playlists de Digital Signage"
   },
   {
-    id: "spaces",
-    label: "Espacios",
-    caption: "Control por ambiente y escenas",
-    image: "/images/platform/espacios/espacios-1.png",
-    imageAlt: "Control de iluminación y escenas por espacio"
+    id: "signage-players",
+    label: "Players",
+    caption: "Pi HDMI y Tizen en la misma flota",
+    image: signagePanelImage,
+    imageAlt: "Players de cartelería administrados desde WeKoda"
   }
 ];
 
 /** Preguntas reales de preventa. También alimentan el structured data de FAQ. */
 export const faqItems: FaqItem[] = [
   {
-    question: "¿Qué es exactamente WeKoda IoT?",
+    question: "¿Qué es WeKoda y en qué se diferencia de un CMS de carteles en la nube?",
     answer:
-      "Es una plataforma de gestión de dispositivos conectados. Centraliza el inventario de la flota, la ejecución de comandos, la telemetría, la actualización remota de firmware y la automatización, todo bajo un modelo de seguridad Zero Trust donde el navegador nunca toca el broker MQTT."
+      "WeKoda es una plataforma IoT-over-IP desplegable on‑prem en tu LAN: cartelería, flota y automatización en un solo tenant. No es un SaaS global tipo Yodeck; el Gateway corre backend, MQTT y panel en tu red, con Zero Trust (el navegador nunca accede al broker)."
   },
   {
-    question: "¿Qué dispositivos puedo conectar?",
+    question: "¿Cómo trabajan Marketing e IT con las campañas?",
     answer:
-      "Hoy operamos placas ESP32, ESP32-C3, ESP8266 y equipos Linux sobre Raspberry Pi. Cada modelo se registra en un catálogo de hardware con su firmware correspondiente. Si tu equipo habla MQTT y respeta el contrato de la plataforma, se integra sin desarrollo adicional."
+      "Marketing arma campañas, sube piezas y define calendario en el panel con permisos acotados. IT u operación validan, publican o pausan. Un borrador no llega al HDMI; hay trazabilidad de entrega y proof-of-play para responder si la promo se vio."
   },
   {
-    question: "¿Puedo controlar equipos que solo funcionan con control remoto infrarrojo?",
+    question: "¿Qué players soporta la cartelería?",
     answer:
-      "Sí. La vertical IR Repeater captura las señales de cualquier control remoto y las reemite por IP desde el dispositivo instalado en la sala. Televisores, aires acondicionados, decodificadores y proyectores quedan disponibles como mandos virtuales en el navegador y se pueden programar por agenda."
+      "Raspberry Pi 4B con agente propio y pantallas Samsung con Tizen SSSP en la misma vertical CMS. La TV puede ser cualquier marca con HDMI; el programa lo resuelve el servidor con prioridades (emergencia, IoT, agenda, canal manual)."
   },
   {
-    question: "¿Necesito conexión permanente a internet?",
+    question: "¿Necesito internet permanente en cada sucursal?",
     answer:
-      "No. El Gateway WeKoda corre el backend, el broker MQTT, la base de datos y el panel dentro de tu propia red. La instalación sigue funcionando en LAN aunque se caiga el enlace a internet, algo indispensable en plantas industriales, hoteles y edificios corporativos."
+      "No para operar el sitio. El Gateway y los players con caché local siguen en LAN si cae el enlace externo. Ideal para retail, plantas y hoteles que no quieren depender de un proveedor extranjero para cada cambio de cartel."
   },
   {
-    question: "¿Cómo se actualiza el firmware de una flota grande?",
+    question: "¿Sigue existiendo IR Repeater en la plataforma?",
     answer:
-      "Con actualización OTA desde el panel. Cada modelo de hardware tiene su catálogo de versiones y la plataforma registra el historial de cada intento, con tasa de éxito, fallos y duración promedio. No hace falta ir hasta el sitio ni reflashear placa por placa."
+      "Sí. Es una vertical real para salas con equipos que solo entienden infrarrojo: captura, biblioteca, mando virtual y automatización junto a luces y agendas. En edificios mixtos convive con Signage bajo la misma consola."
   },
   {
-    question: "¿Sirve para administrar varias empresas o sucursales?",
+    question: "¿Cómo se actualiza firmware de players y dispositivos edge?",
     answer:
-      "Sí, el aislamiento multi-tenant es parte del modelo de datos, no un filtro agregado después. Cada organización tiene sus dispositivos, sus miembros y sus roles de propietario, administrador y operador, y toda acción sensible queda registrada en la auditoría."
+      "OTA desde el panel, con catálogo por modelo de hardware e historial de intentos. Players Pi, Tizen y placas ESP comparten el mismo criterio de flota que el resto del edificio."
   },
   {
     question: "¿Puedo instalar WeKoda en mi propia infraestructura?",
     answer:
-      "Sí, mediante la licencia de instalación. Desplegás la plataforma completa en tu nube privada o datacenter, con acompañamiento de integración y acceso al catálogo de firmware por modelo de hardware."
+      "Sí, con licencia de instalación en tu nube o datacenter, multi-tenant, roles y auditoría. También ofrecemos Gateway appliance para arrancar rápido on‑prem."
   }
 ];
 
 /** Opciones del campo de interés en el formulario de contacto. */
 export const contactInterests = [
-  "Kit IR Repeater",
-  "Digital Signage",
+  "Cartelería / CMS",
   "Gateway WeKoda (on-premise)",
   "Licencia de instalación",
+  "Kit de arranque (hardware)",
   "Integración a medida",
   "Solo quiero más información"
 ] as const;
