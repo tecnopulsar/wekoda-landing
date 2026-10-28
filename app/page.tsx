@@ -24,7 +24,7 @@ import {
   faqItems,
   heroPreviewCards,
 } from '@/lib/platform-content';
-import { getAppLoginUrl, SHOW_APP_LOGIN } from '@/lib/constants';
+import { getAppLoginUrl, SHOW_APP_LOGIN, SHOW_DEVBLOG } from '@/lib/constants';
 import {
   BRAND_ALTERNATE_NAMES,
   BRAND_DISAMBIGUATION,
@@ -672,20 +672,22 @@ export default async function LandingPage() {
                 control por espacios, automatización, aplicaciones verticales y
                 gobierno de la organización.
               </p>
-              <Button
-                asChild
-                variant='outline'
-                className='mt-2 border-primary/30 text-primary hover:bg-primary/10'
-              >
-                <Link
-                  href='/devblog'
-                  data-action='nav-devblog-from-landing'
-                  data-entity='devblog'
+              {SHOW_DEVBLOG ? (
+                <Button
+                  asChild
+                  variant='outline'
+                  className='mt-2 border-primary/30 text-primary hover:bg-primary/10'
                 >
-                  Leer cómo está construida
-                  <ArrowRight className='size-4' aria-hidden />
-                </Link>
-              </Button>
+                  <Link
+                    href='/devblog'
+                    data-action='nav-devblog-from-landing'
+                    data-entity='devblog'
+                  >
+                    Leer cómo está construida
+                    <ArrowRight className='size-4' aria-hidden />
+                  </Link>
+                </Button>
+              ) : null}
             </div>
             <div className='relative mx-auto aspect-[3/4] w-full max-w-xs overflow-hidden rounded-2xl border border-blue-100/80 bg-white shadow-lg'>
               <Image
@@ -807,7 +809,7 @@ export default async function LandingPage() {
         </div>
       </section>
 
-      <DevBlogInvitePopup />
+      {SHOW_DEVBLOG ? <DevBlogInvitePopup /> : null}
 
       <script
         type='application/ld+json'

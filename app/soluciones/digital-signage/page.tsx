@@ -18,6 +18,7 @@ import {
   digitalSignageImages,
 } from '@/lib/digital-signage';
 import { SITE_NAME, absoluteUrl } from '@/lib/seo';
+import { SHOW_DEVBLOG } from '@/lib/constants';
 
 const title = 'WeKoda Digital Signage — CMS de cartelería en tu red';
 const description =
@@ -275,16 +276,18 @@ export default function DigitalSignagePage() {
               <ArrowRight className='size-4' aria-hidden />
             </Link>
           </Button>
-          <p className='mt-4'>
-            <Link
-              href='/devblog'
-              className='text-sm text-slate-400 underline-offset-4 hover:text-primary hover:underline'
-              data-action='read-signage-article'
-              data-entity='devblog'
-            >
-              Leer los posts técnicos de Signage en el DevBlog
-            </Link>
-          </p>
+          {SHOW_DEVBLOG ? (
+            <p className='mt-4'>
+              <Link
+                href='/devblog'
+                className='text-sm text-slate-400 underline-offset-4 hover:text-primary hover:underline'
+                data-action='read-signage-article'
+                data-entity='devblog'
+              >
+                Leer los posts técnicos de Signage en el DevBlog
+              </Link>
+            </p>
+          ) : null}
         </div>
       </section>
     </div>

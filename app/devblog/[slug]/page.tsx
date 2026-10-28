@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { ArrowLeft, ArrowRight, CalendarDays, Clock, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getAllPosts, getPostBySlug, getPostSlugs, formatPostDate } from "@/lib/devblog";
+import { SHOW_DEVBLOG } from "@/lib/constants";
 import { ORGANIZATION, SITE_NAME, absoluteUrl } from "@/lib/seo";
 
 interface PageProps {
@@ -26,6 +27,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: post.summary,
     keywords: post.tags,
     alternates: { canonical: `/devblog/${post.slug}` },
+    robots: SHOW_DEVBLOG
+      ? { index: true, follow: true }
+      : { index: false, follow: false },
     openGraph: {
       type: "article",
       url,

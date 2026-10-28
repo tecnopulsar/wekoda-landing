@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { headers } from 'next/headers';
 import { Button } from '@/components/ui/button';
 import { BrandLogo } from '@/components/brand-logo';
-import { getAppLoginUrl, SHOW_APP_LOGIN } from '@/lib/constants';
+import { getAppLoginUrl, SHOW_APP_LOGIN, SHOW_DEVBLOG } from '@/lib/constants';
 
 export async function PublicNavbar() {
   const loginUrl = getAppLoginUrl((await headers()).get('host'));
@@ -48,19 +48,21 @@ export async function PublicNavbar() {
               Domótica IoT
             </Link>
           </Button>
-          <Button
-            variant='ghost'
-            asChild
-            className='hidden text-base font-medium text-muted-foreground hover:text-primary md:inline-flex'
-          >
-            <Link
-              href='/devblog'
-              data-action='nav-devblog'
-              data-entity='devblog'
+          {SHOW_DEVBLOG ? (
+            <Button
+              variant='ghost'
+              asChild
+              className='hidden text-base font-medium text-muted-foreground hover:text-primary md:inline-flex'
             >
-              DevBlog
-            </Link>
-          </Button>
+              <Link
+                href='/devblog'
+                data-action='nav-devblog'
+                data-entity='devblog'
+              >
+                DevBlog
+              </Link>
+            </Button>
+          ) : null}
           {SHOW_APP_LOGIN ? (
             <Button
               variant='ghost'

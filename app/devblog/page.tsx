@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ArrowRight, Cpu, ShieldCheck, Radio, Server, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getAllPosts, formatPostDate } from "@/lib/devblog";
+import { SHOW_DEVBLOG } from "@/lib/constants";
 import { SITE_NAME, absoluteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -21,6 +22,9 @@ export const metadata: Metadata = {
     "infraestructura edge"
   ],
   alternates: { canonical: "/devblog" },
+  robots: SHOW_DEVBLOG
+    ? { index: true, follow: true }
+    : { index: false, follow: false },
   openGraph: {
     type: "website",
     url: absoluteUrl("/devblog"),

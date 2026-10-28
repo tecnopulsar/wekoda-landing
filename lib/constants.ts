@@ -77,6 +77,9 @@ export function getAppLoginUrl(host?: string | null): string {
  */
 export const SHOW_APP_LOGIN = true;
 
+/** DevBlog público. Poné `true` cuando vuelva a mostrarse en nav, sitemap y landings. */
+export const SHOW_DEVBLOG = false;
+
 /** Evento que preselecciona el interés en el formulario de contacto. */
 export const SELECT_INTEREST_EVENT = 'wekoda:select-interest';
 

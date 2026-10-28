@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { SHOW_DEVBLOG } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/seo";
 
 export type SitemapEntry = MetadataRoute.Sitemap[number];
@@ -20,12 +21,16 @@ export function getStaticSitemapEntries(lastModified: Date): SitemapEntry[] {
       changeFrequency: "weekly",
       priority: 0.95
     },
-    {
-      url: `${siteUrl}/devblog`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.75
-    },
+    ...(SHOW_DEVBLOG
+      ? [
+          {
+            url: `${siteUrl}/devblog`,
+            lastModified,
+            changeFrequency: "weekly" as const,
+            priority: 0.75
+          }
+        ]
+      : []),
     {
       url: `${siteUrl}/soluciones/ir-repeater`,
       lastModified,
