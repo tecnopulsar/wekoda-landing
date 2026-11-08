@@ -17,7 +17,6 @@ import { ScrollToContactOnHash } from '@/components/ui-public/ScrollToContactOnH
 import { HeroSignageVisual } from '@/components/ui-public/HeroSignageVisual';
 import { PlatformShowcase } from '@/components/ui-public/PlatformShowcase';
 import { SignageJourney } from '@/components/ui-public/SignageJourney';
-import { DeploymentPlans } from '@/components/ui-public/DeploymentPlans';
 import {
   verticalApps,
   faqItems,
@@ -682,34 +681,6 @@ export default async function LandingPage() {
               />
             </div>
           </div>
-        </div>
-      </section>
-
-      <section id='modalidades' className={sectionSnap}>
-        <div className='mx-auto w-full max-w-7xl'>
-          <div className='max-w-3xl'>
-            <p className='text-sm font-semibold uppercase tracking-widest text-secondary'>
-              Cómo empezar
-            </p>
-            <h2 className='mt-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl lg:text-4xl'>
-              Tres planes Cloud para cartelería en Samsung TV.
-            </h2>
-            <p className='mt-3 text-base text-muted-foreground md:text-lg'>
-              Precios en dólares estadounidenses (USD). Empezá free con dos
-              pantallas; escalá a 10 o 100 dispositivos con facturación mensual
-              o pago único por dos años.
-            </p>
-          </div>
-
-          <div className='mt-10 md:mt-12'>
-            <DeploymentPlans />
-          </div>
-
-          <p className='mt-8 text-center text-sm text-muted-foreground'>
-            Los importes referidos a TVs Samsung línea profesional o Business en
-            modalidad Cloud. Gateway on‑prem e integraciones a medida se cotizan
-            por separado.
-          </p>
         </div>
       </section>
 
