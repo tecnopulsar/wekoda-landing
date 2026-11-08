@@ -13,7 +13,6 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ContactForm } from '@/components/ui-public/ContactForm';
-import { DevBlogInvitePopup } from '@/components/ui-public/DevBlogInvitePopup';
 import { ScrollToContactOnHash } from '@/components/ui-public/ScrollToContactOnHash';
 import { HeroSignageVisual } from '@/components/ui-public/HeroSignageVisual';
 import { PlatformShowcase } from '@/components/ui-public/PlatformShowcase';
@@ -24,7 +23,7 @@ import {
   faqItems,
   heroPreviewCards,
 } from '@/lib/platform-content';
-import { getAppLoginUrl, SHOW_APP_LOGIN, SHOW_DEVBLOG } from '@/lib/constants';
+import { getAppLoginUrl, SHOW_APP_LOGIN } from '@/lib/constants';
 import {
   BRAND_ALTERNATE_NAMES,
   BRAND_DISAMBIGUATION,
@@ -672,22 +671,6 @@ export default async function LandingPage() {
                 control por espacios, automatización, aplicaciones verticales y
                 gobierno de la organización.
               </p>
-              {SHOW_DEVBLOG ? (
-                <Button
-                  asChild
-                  variant='outline'
-                  className='mt-2 border-primary/30 text-primary hover:bg-primary/10'
-                >
-                  <Link
-                    href='/devblog'
-                    data-action='nav-devblog-from-landing'
-                    data-entity='devblog'
-                  >
-                    Leer cómo está construida
-                    <ArrowRight className='size-4' aria-hidden />
-                  </Link>
-                </Button>
-              ) : null}
             </div>
             <div className='relative mx-auto aspect-[3/4] w-full max-w-xs overflow-hidden rounded-2xl border border-blue-100/80 bg-white shadow-lg'>
               <Image
@@ -808,8 +791,6 @@ export default async function LandingPage() {
           </div>
         </div>
       </section>
-
-      {SHOW_DEVBLOG ? <DevBlogInvitePopup /> : null}
 
       <script
         type='application/ld+json'
