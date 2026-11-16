@@ -1,14 +1,12 @@
 import Link from 'next/link';
 import { headers } from 'next/headers';
-import { MapPin, Phone, Mail, Linkedin, Instagram } from 'lucide-react';
+import { MapPin, Phone, Mail, Instagram } from 'lucide-react';
 import { BrandLogo } from '@/components/brand-logo';
 import { getAppLoginUrl, SHOW_APP_LOGIN } from '@/lib/constants';
 
 /** Actualizar con las URLs oficiales de la marca cuando estén disponibles. */
 const SOCIAL_LINKS = {
-  linkedin: 'https://www.linkedin.com/company/wetechar',
-  instagram: 'https://www.instagram.com/wetechar',
-  x: 'https://x.com/wetechar',
+  instagram: 'https://www.instagram.com/wekoda.platform',
 } as const;
 
 const CONTACT = {
@@ -106,44 +104,15 @@ export async function PublicFooter() {
             </p>
             <div className='mt-4 flex flex-wrap items-center gap-3'>
               <a
-                href={SOCIAL_LINKS.linkedin}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='inline-flex size-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-zinc-300 transition-colors hover:border-primary/50 hover:bg-white/10 hover:text-primary'
-                aria-label='We Koda en LinkedIn'
-                data-action='open-social'
-                data-entity='linkedin'
-              >
-                <Linkedin className='size-5' aria-hidden />
-              </a>
-              <a
                 href={SOCIAL_LINKS.instagram}
                 target='_blank'
                 rel='noopener noreferrer'
                 className='inline-flex size-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-zinc-300 transition-colors hover:border-primary/50 hover:bg-white/10 hover:text-primary'
-                aria-label='We Koda en Instagram'
+                aria-label='WeKoda en Instagram'
                 data-action='open-social'
                 data-entity='instagram'
               >
                 <Instagram className='size-5' aria-hidden />
-              </a>
-              <a
-                href={SOCIAL_LINKS.x}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='inline-flex size-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-zinc-300 transition-colors hover:border-primary/50 hover:bg-white/10 hover:text-primary'
-                aria-label='We Koda en X'
-                data-action='open-social'
-                data-entity='x'
-              >
-                <svg
-                  className='size-4'
-                  viewBox='0 0 24 24'
-                  aria-hidden
-                  fill='currentColor'
-                >
-                  <path d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z' />
-                </svg>
               </a>
             </div>
           </div>

@@ -32,11 +32,7 @@ export const ORGANIZATION = {
   city: 'Ciudad Autónoma de Buenos Aires',
   region: 'CABA',
   country: 'AR',
-  social: [
-    'https://www.linkedin.com/company/wetechar',
-    'https://www.instagram.com/wetechar',
-    'https://x.com/wetechar',
-  ],
+  social: ['https://www.instagram.com/wekoda.platform'],
 } as const;
 
 /** Palabras clave objetivo, en el español que usa el mercado local. */
