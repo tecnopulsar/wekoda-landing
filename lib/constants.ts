@@ -77,6 +77,10 @@ export function getAppLoginUrl(host?: string | null): string {
  */
 export const SHOW_APP_LOGIN = true;
 
+/** Interés del formulario para el programa de sitios fundadores. */
+export const FOUNDER_PROGRAM_INTEREST =
+  'Programa Fundadores · sitio fundador';
+
 /** Evento que preselecciona el interés en el formulario de contacto. */
 export const SELECT_INTEREST_EVENT = 'wekoda:select-interest';
 

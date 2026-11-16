@@ -38,8 +38,8 @@ export async function PublicFooter() {
               <BrandLogo className='h-9 md:h-10' />
             </Link>
             <p className='mt-3 max-w-xs text-sm leading-relaxed text-zinc-400'>
-              Plataforma de orquestación y seguridad para dispositivos en el
-              edge.
+              Cartelería digital y programa de sitios fundadores. La plataforma
+              crece con los primeros sitios reales.
             </p>
             <p className='mt-6 text-xs text-zinc-500'>
               © {new Date().getFullYear()} We Koda. Todos los derechos

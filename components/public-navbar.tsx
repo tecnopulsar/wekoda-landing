@@ -41,11 +41,11 @@ export async function PublicNavbar() {
             className='hidden text-base font-medium text-muted-foreground hover:text-primary md:inline-flex'
           >
             <Link
-              href='/#domotica-iot'
-              data-action='nav-domotics-iot'
-              data-entity='platform'
+              href='/#fundadores'
+              data-action='nav-founder-program'
+              data-entity='founder-program'
             >
-              Domótica IoT
+              Fundadores
             </Link>
           </Button>
           {SHOW_APP_LOGIN ? (
@@ -72,7 +72,7 @@ export async function PublicNavbar() {
               data-action='nav-contact'
               data-entity='lead'
             >
-              Contacto
+              Ser fundador
             </Link>
           </Button>
         </div>

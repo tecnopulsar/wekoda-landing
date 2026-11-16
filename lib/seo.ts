@@ -22,7 +22,7 @@ export const SITE_DESCRIPTION =
   'WeKoda: CMS Signage e IoT-over-IP para empresas. Cartelería digital, flota y automatización en tu red. Marca tecnológica independiente (no Škoda automotriz).';
 
 export const SITE_DESCRIPTION_SHORT =
-  'WeKoda — cartelería digital, CMS Signage y plataforma IoT-over-IP para Marketing, IT y dirección.';
+  'WeKoda busca sitios fundadores para cartelería digital: la misma campaña en las sucursales correctas, con prueba de que se vio.';
 
 export const ORGANIZATION = {
   legalName: 'WeTech',

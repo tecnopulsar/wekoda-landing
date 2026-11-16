@@ -19,6 +19,7 @@ import {
   ToggleLeft,
   Zap,
 } from 'lucide-react';
+import { FOUNDER_PROGRAM_INTEREST } from '@/lib/constants';
 
 const signagePanelImage = '/images/platform/apps/digital-signage.png';
 
@@ -456,6 +457,30 @@ export const heroPreviewCards: HeroPreviewCard[] = [
   },
 ];
 
+/** FAQ de la home: programa de sitios fundadores, sin catálogo de precios. */
+export const founderHomeFaq: FaqItem[] = [
+  {
+    question: '¿Qué es un sitio fundador?',
+    answer:
+      'Es un cliente semilla: un edificio, una cadena o un integrador que opera un caso real con WeKoda y nos ayuda a afinar el producto. No es una participación societaria. Recibe piloto acompañado, condición comercial de fundador y prioridad en el roadmap.',
+  },
+  {
+    question: '¿Por dónde conviene empezar?',
+    answer:
+      'Por cartelería. Marketing carga la campaña y el calendario; IT aprueba y publica. Luces, aires por infrarrojo y el resto de la plataforma se suman en el mismo panel cuando el sitio lo necesita.',
+  },
+  {
+    question: '¿Tengo que cambiar los televisores?',
+    answer:
+      'No. Cualquier pantalla con HDMI puede usar un player, y las Samsung profesionales con Tizen ya funcionan como player directo. El mensaje sale por campaña, no por pendrive.',
+  },
+  {
+    question: '¿Cuánto cuesta el programa?',
+    answer:
+      'No hay tarifa de catálogo en esta cohorte. La condición se conversa según pantallas, sedes y qué entra primero. Dejanos el sitio y coordinamos una primera llamada.',
+  },
+];
+
 /** Preguntas reales de preventa. También alimentan el structured data de FAQ. */
 export const faqItems: FaqItem[] = [
   {
@@ -508,6 +533,7 @@ export const faqItems: FaqItem[] = [
 
 /** Opciones del campo de interés en el formulario de contacto. */
 export const contactInterests = [
+  FOUNDER_PROGRAM_INTEREST,
   'Cartelería / CMS',
   'Cloud Signage · plan Free (2 TVs)',
   'Cloud Signage · plan 10 TVs (USD 100/mes)',
