@@ -25,6 +25,12 @@ export function getStaticSitemapEntries(lastModified: Date): SitemapEntry[] {
       lastModified,
       changeFrequency: "monthly",
       priority: 0.7
+    },
+    {
+      url: `${siteUrl}/privacidad`,
+      lastModified,
+      changeFrequency: "yearly",
+      priority: 0.4
     }
   ];
 }

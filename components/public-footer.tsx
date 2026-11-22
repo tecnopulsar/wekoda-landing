@@ -152,8 +152,10 @@ export async function PublicFooter() {
               </li>
               <li>
                 <Link
-                  href='#'
+                  href='/privacidad'
                   className='text-zinc-400 transition-colors hover:text-white'
+                  data-action='nav-privacy-footer'
+                  data-entity='legal'
                 >
                   Privacidad
                 </Link>
