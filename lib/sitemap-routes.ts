@@ -31,6 +31,12 @@ export function getStaticSitemapEntries(lastModified: Date): SitemapEntry[] {
       lastModified,
       changeFrequency: "yearly",
       priority: 0.4
+    },
+    {
+      url: `${siteUrl}/terminos`,
+      lastModified,
+      changeFrequency: "yearly",
+      priority: 0.4
     }
   ];
 }

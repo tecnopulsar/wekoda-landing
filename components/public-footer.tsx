@@ -144,8 +144,10 @@ export async function PublicFooter() {
               </li>
               <li>
                 <Link
-                  href='#'
+                  href='/terminos'
                   className='text-zinc-400 transition-colors hover:text-white'
+                  data-action='nav-terms-footer'
+                  data-entity='legal'
                 >
                   Términos
                 </Link>
